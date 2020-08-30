@@ -11,6 +11,11 @@ export class TalentResolver {
     return await this.talentService.findAll();
   }
 
+  @Query(() => Talent)
+  async talent(@Args('id') id: number): Promise<Talent> {
+    return await this.talentService.findOne(id);
+  }
+
   @Mutation(() => Talent)
   async createTalent(@Args('input') input: TalentInput): Promise<Talent> {
     return await this.talentService.create(input);

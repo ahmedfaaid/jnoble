@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as argon2 from 'argon2';
 import { Talent, TalentInput } from './talent.entity';
+import { Args } from '@nestjs/graphql';
 
 @Injectable()
 export class TalentService {
@@ -13,6 +14,10 @@ export class TalentService {
 
   async findAll(): Promise<Talent[]> {
     return await this.talentRepository.find();
+  }
+
+  async findOne(id): Promise<Talent> {
+    return await this.talentRepository.findOne(id);
   }
 
   async create(input: TalentInput): Promise<Talent> {

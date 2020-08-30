@@ -19,6 +19,7 @@ scalar DateTime
 
 type Query {
   talents: [Talent!]!
+  talent(id: Float!): Talent!
 }
 
 type Mutation {
