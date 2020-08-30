@@ -17,9 +17,18 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Employer {
+  id: Float!
+  companyName: String!
+  companyEmail: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   talents: [Talent!]!
   talent(id: Float!): Talent!
+  employers: [Employer!]!
 }
 
 type Mutation {

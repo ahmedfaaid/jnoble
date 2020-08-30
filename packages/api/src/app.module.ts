@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { TalentModule } from './talent/talent.module';
+import { EmployerModule } from './employer/employer.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { TalentModule } from './talent/talent.module';
       uploads: true,
     }),
     TalentModule,
+    EmployerModule,
   ],
   controllers: [],
   providers: [],
