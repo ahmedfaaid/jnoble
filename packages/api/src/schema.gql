@@ -20,3 +20,15 @@ scalar DateTime
 type Query {
   talents: [Talent!]!
 }
+
+type Mutation {
+  createTalent(input: TalentInput!): Talent!
+}
+
+input TalentInput {
+  firstName: String!
+  middleName: String
+  lastName: String!
+  email: String!
+  password: String!
+}
