@@ -4,9 +4,9 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: jnoble
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'jnoble'
       PGDATA: /tmp
     volumes:
       - ./database:/var/lib/postgresql/data
@@ -16,4 +16,4 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8090:8090
+      - 8090:8080
