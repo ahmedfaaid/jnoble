@@ -29,10 +29,12 @@ type Query {
   talents: [Talent!]!
   talent(id: Float!): Talent!
   employers: [Employer!]!
+  employer(id: Float!): Employer!
 }
 
 type Mutation {
   createTalent(input: TalentInput!): Talent!
+  createEmployer(input: EmployerInput!): Employer!
 }
 
 input TalentInput {
@@ -40,5 +42,11 @@ input TalentInput {
   middleName: String
   lastName: String!
   email: String!
+  password: String!
+}
+
+input EmployerInput {
+  companyName: String!
+  companyEmail: String!
   password: String!
 }
