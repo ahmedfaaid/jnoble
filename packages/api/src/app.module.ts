@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { TalentModule } from './talent/talent.module';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       uploads: true,

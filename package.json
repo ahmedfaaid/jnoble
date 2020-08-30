@@ -1,6 +1,9 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "start-db": "docker-compose up -d"
+  },
   "devDependencies": {
     "lerna": "^3.22.1"
   }
