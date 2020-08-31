@@ -4,36 +4,32 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
-import { Job } from '../job/job.entity';
+import { Employer } from '../employer/employer.entity';
 
 @ObjectType()
 @Entity()
-export class Employer {
+export class Job {
   @PrimaryGeneratedColumn()
   @Field()
   id: number;
 
-  @Column({ name: 'company_name' })
+  @Column()
   @Field()
-  companyName: string;
-
-  @Column({ name: 'company_email' })
-  @Field()
-  companyEmail: string;
+  title: string;
 
   @Column()
-  password: string;
+  @Field()
+  description: string;
 
-  @OneToMany(
-    () => Job,
-    job => job.id,
-    { nullable: true },
+  @ManyToOne(
+    () => Employer,
+    employer => employer.jobs,
   )
-  @Field(() => Job, { nullable: true })
-  jobs: Job[];
+  @Field(() => Employer)
+  employer: Employer;
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()
@@ -45,13 +41,10 @@ export class Employer {
 }
 
 @InputType()
-export class EmployerInput {
+export class JobInput {
   @Field()
-  companyName: string;
+  title: string;
 
   @Field()
-  companyEmail: string;
-
-  @Field()
-  password: string;
+  description: string;
 }

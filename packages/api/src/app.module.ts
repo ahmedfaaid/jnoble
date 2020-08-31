@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { TalentModule } from './talent/talent.module';
 import { EmployerModule } from './employer/employer.module';
+import { JobModule } from './job/job.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { EmployerModule } from './employer/employer.module';
     }),
     TalentModule,
     EmployerModule,
+    JobModule,
   ],
   controllers: [],
   providers: [],
