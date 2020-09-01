@@ -38,6 +38,7 @@ type Employer {
 type Query {
   talents: [Talent!]!
   talent(id: Float!): Talent!
+  talentLogin(password: String!, email: String!): Talent!
   employers: [Employer!]!
   employer(id: Float!): Employer!
 }

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as argon2 from 'argon2';
 import { Talent, TalentInput } from './talent.entity';
-// import { MyContext } from 'src/types';
+import { MyContext } from 'src/types';
 
 @Injectable()
 export class TalentService {
@@ -20,31 +20,35 @@ export class TalentService {
     return await this.talentRepository.findOne(id);
   }
 
-  // async login(
-  //   email: string,
-  //   password: string,
-  //   ctx: MyContext,
-  // ): Promise<Talent> {
-  //   const user = await this.talentRepository.findOne({ where: { email } });
+  async login(
+    email: string,
+    password: string,
+    ctx: MyContext,
+  ): Promise<Talent> {
+    const user = await this.talentRepository.findOne({ where: { email } });
 
-  //   if (!user) return null;
+    if (!user) return null;
 
-  //   const validPassword = await argon2.verify(user.password, password);
+    const validPassword = await argon2.verify(user.password, password);
 
-  //   if (!validPassword) return null;
+    if (!validPassword) return null;
 
-  //   ctx.req.session.userId = user.id;
+    ctx.req.session.userId = user.id;
 
-  //   return user;
-  // }
+    return user;
+  }
 
-  async create(input: TalentInput): Promise<Talent> {
+  async create(input: TalentInput, ctx: MyContext): Promise<Talent> {
     const hashedPassword = await argon2.hash(input.password);
 
     const user = await this.talentRepository.create(input);
 
     user.password = hashedPassword;
 
-    return await this.talentRepository.save(user);
+    const savedUser = await this.talentRepository.save(user);
+
+    ctx.req.session.userId = savedUser.id;
+
+    return savedUser;
   }
 }
