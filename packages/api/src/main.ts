@@ -1,12 +1,9 @@
-import dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-import Redis from 'ioredis';
-import session from 'express-session';
-import connectRedis from 'connect-redis';
-
-dotenv.config();
+import * as Redis from 'ioredis';
+import * as session from 'express-session';
+import * as connectRedis from 'connect-redis';
+import { AppModule } from './app.module';
 
 const port = 4040;
 const RedisStore = connectRedis(session);
@@ -17,7 +14,7 @@ async function bootstrap() {
   app.use(
     session({
       name: 'noble.qid',
-      store: RedisStore({
+      store: new RedisStore({
         client: redisClient,
       }),
       cookie: {
