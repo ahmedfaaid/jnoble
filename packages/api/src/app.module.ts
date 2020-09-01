@@ -12,6 +12,7 @@ import { JobModule } from './job/job.module';
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       uploads: true,
+      context: ({ req, res }) => ({ req, res }),
     }),
     TalentModule,
     EmployerModule,

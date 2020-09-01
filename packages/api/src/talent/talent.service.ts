@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as argon2 from 'argon2';
 import { Talent, TalentInput } from './talent.entity';
-import { Args } from '@nestjs/graphql';
+// import { MyContext } from 'src/types';
 
 @Injectable()
 export class TalentService {
@@ -16,14 +16,35 @@ export class TalentService {
     return await this.talentRepository.find();
   }
 
-  async findOne(id): Promise<Talent> {
+  async findOne(id: number): Promise<Talent> {
     return await this.talentRepository.findOne(id);
   }
 
+  // async login(
+  //   email: string,
+  //   password: string,
+  //   ctx: MyContext,
+  // ): Promise<Talent> {
+  //   const user = await this.talentRepository.findOne({ where: { email } });
+
+  //   if (!user) return null;
+
+  //   const validPassword = await argon2.verify(user.password, password);
+
+  //   if (!validPassword) return null;
+
+  //   ctx.req.session.userId = user.id;
+
+  //   return user;
+  // }
+
   async create(input: TalentInput): Promise<Talent> {
     const hashedPassword = await argon2.hash(input.password);
-    const talent = await this.talentRepository.create(input);
-    talent.password = hashedPassword;
-    return await this.talentRepository.save(talent);
+
+    const user = await this.talentRepository.create(input);
+
+    user.password = hashedPassword;
+
+    return await this.talentRepository.save(user);
   }
 }
