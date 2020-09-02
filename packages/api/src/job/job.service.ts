@@ -13,4 +13,8 @@ export class JobService {
   async findAll(): Promise<Job[]> {
     return await this.jobRepository.find();
   }
+
+  async findOne(id: number): Promise<Job> {
+    return await this.jobRepository.findOne(id);
+  }
 }
