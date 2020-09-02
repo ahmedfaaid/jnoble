@@ -1,6 +1,7 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, Context } from '@nestjs/graphql';
 import { JobService } from './job.service';
-import { Job } from './job.entity';
+import { Job, JobInput } from './job.entity';
+import { MyContext } from 'src/types';
 
 @Resolver()
 export class JobResolver {
@@ -14,5 +15,13 @@ export class JobResolver {
   @Query(() => Job)
   async job(@Args('id') id: number): Promise<Job> {
     return await this.jobService.findOne(id);
+  }
+
+  @Mutation(() => Job)
+  async createJob(
+    @Args('input') input: JobInput,
+    @Context() ctx: MyContext,
+  ): Promise<Job> {
+    return await this.jobService.create(input, ctx);
   }
 }
