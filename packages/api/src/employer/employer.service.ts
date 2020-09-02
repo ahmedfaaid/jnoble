@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as argon2 from 'argon2';
 import { Employer, EmployerInput } from './employer.entity';
+import { MyContext } from 'src/types';
 
 @Injectable()
 export class EmployerService {
@@ -15,14 +16,41 @@ export class EmployerService {
     return await this.employerRepository.find();
   }
 
-  async findOne(id): Promise<Employer> {
+  async findOne(id: number): Promise<Employer> {
     return await this.employerRepository.findOne(id);
   }
 
-  async create(input: EmployerInput): Promise<Employer> {
+  async login(
+    email: string,
+    password: string,
+    ctx: MyContext,
+  ): Promise<Employer> {
+    const user = await this.employerRepository.findOne({
+      where: { companyEmail: email },
+    });
+
+    if (!user) return null;
+
+    const validPassword = await argon2.verify(user.password, password);
+
+    if (!validPassword) return null;
+
+    ctx.req.session.userId = user.id;
+
+    return user;
+  }
+
+  async create(input: EmployerInput, ctx: MyContext): Promise<Employer> {
     const hashedPassword = await argon2.hash(input.password);
+
     const employer = this.employerRepository.create(input);
+
     employer.password = hashedPassword;
-    return await this.employerRepository.save(employer);
+
+    const savedUser = await this.employerRepository.save(employer);
+
+    ctx.req.session.userId = savedUser.id;
+
+    return savedUser;
   }
 }

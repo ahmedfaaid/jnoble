@@ -41,6 +41,7 @@ type Query {
   talentLogin(password: String!, email: String!): Talent!
   employers: [Employer!]!
   employer(id: Float!): Employer!
+  employerLogin(password: String!, email: String!): Employer!
 }
 
 type Mutation {
