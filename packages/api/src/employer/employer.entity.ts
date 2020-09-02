@@ -32,7 +32,7 @@ export class Employer {
     job => job.id,
     { nullable: true },
   )
-  @Field(() => Job, { nullable: true })
+  @Field(() => [Job], { nullable: true })
   jobs: Job[];
 
   @CreateDateColumn({ name: 'created_at' })

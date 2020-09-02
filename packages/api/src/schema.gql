@@ -2,12 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Talent {
+type Employer {
   id: Float!
-  firstName: String!
-  middleName: String
-  lastName: String!
-  email: String!
+  companyName: String!
+  companyEmail: String!
+  jobs: [Job!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -22,15 +21,18 @@ type Job {
   title: String!
   description: String!
   employer: Employer!
+  applications: [Talent!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
-type Employer {
+type Talent {
   id: Float!
-  companyName: String!
-  companyEmail: String!
-  jobs: Job
+  firstName: String!
+  middleName: String
+  lastName: String!
+  email: String!
+  myJobs: [Job!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }

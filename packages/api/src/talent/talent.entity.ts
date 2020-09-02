@@ -4,8 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
+import { Job } from 'src/job/job.entity';
 
 @ObjectType()
 @Entity()
@@ -32,6 +34,14 @@ export class Talent {
 
   @Column()
   password: string;
+
+  @OneToMany(
+    () => Job,
+    myJob => myJob.id,
+    { nullable: true },
+  )
+  @Field(() => [Job], { nullable: true })
+  myJobs: Job[];
 
   @CreateDateColumn()
   @Field()

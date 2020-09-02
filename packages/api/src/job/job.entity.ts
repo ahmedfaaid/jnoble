@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
 import { Employer } from '../employer/employer.entity';
+import { Talent } from '../talent/talent.entity';
 
 @ObjectType()
 @Entity()
@@ -27,9 +28,20 @@ export class Job {
   @ManyToOne(
     () => Employer,
     employer => employer.jobs,
+    { onDelete: 'SET NULL' },
   )
   @Field(() => Employer)
   employer: Employer;
+
+  @ManyToOne(
+    () => Talent,
+    applications => applications.myJobs,
+    {
+      nullable: true,
+    },
+  )
+  @Field(() => [Talent], { nullable: true })
+  applications: Talent[];
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()
