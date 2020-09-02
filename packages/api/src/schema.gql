@@ -44,6 +44,7 @@ type Query {
   employers: [Employer!]!
   employer(id: Float!): Employer!
   employerLogin(password: String!, email: String!): Employer!
+  jobs: [Job!]!
 }
 
 type Mutation {
