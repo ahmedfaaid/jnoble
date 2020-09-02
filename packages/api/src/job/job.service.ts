@@ -14,11 +14,11 @@ export class JobService {
   ) {}
 
   async findAll(): Promise<Job[]> {
-    return await this.jobRepository.find();
+    return await this.jobRepository.find({ relations: ['employer'] });
   }
 
   async findOne(id: number): Promise<Job> {
-    return await this.jobRepository.findOne(id);
+    return await this.jobRepository.findOne(id, { relations: ['employer'] });
   }
 
   async create(input: JobInput, ctx: MyContext): Promise<Job> {
