@@ -17,7 +17,7 @@ export class EmployerService {
   }
 
   async findOne(id: number): Promise<Employer> {
-    return await this.employerRepository.findOne(id);
+    return await this.employerRepository.findOne(id, { relations: ['jobs'] });
   }
 
   async login(
