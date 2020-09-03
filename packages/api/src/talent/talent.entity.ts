@@ -28,7 +28,7 @@ export class Talent {
   @Field()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   @Field()
   email: string;
 
@@ -43,11 +43,15 @@ export class Talent {
   @Field(() => [Job], { nullable: true })
   myJobs: Job[];
 
-  @CreateDateColumn()
+  @Column({ default: 'talent' })
+  @Field({ nullable: true })
+  role: string;
+
+  @CreateDateColumn({ name: 'created_at' })
   @Field()
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   @Field()
   updatedAt: Date;
 }

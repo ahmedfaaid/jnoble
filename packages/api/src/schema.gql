@@ -7,6 +7,7 @@ type Employer {
   companyName: String!
   companyEmail: String!
   jobs: [Job!]
+  role: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -33,6 +34,7 @@ type Talent {
   lastName: String!
   email: String!
   myJobs: [Job!]
+  role: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }

@@ -20,7 +20,7 @@ export class Employer {
   @Field()
   companyName: string;
 
-  @Column({ name: 'company_email' })
+  @Column({ name: 'company_email', unique: true })
   @Field()
   companyEmail: string;
 
@@ -34,6 +34,10 @@ export class Employer {
   )
   @Field(() => [Job], { nullable: true })
   jobs: Job[];
+
+  @Column({ default: 'employer' })
+  @Field({ nullable: true })
+  role: string;
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()
