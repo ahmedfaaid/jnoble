@@ -24,6 +24,7 @@ async function bootstrap() {
       },
       secret: process.env.SESSION_SECRET,
       saveUninitialized: false,
+      resave: true,
     }),
   );
   await app.listen(port);
