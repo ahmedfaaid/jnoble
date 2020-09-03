@@ -29,7 +29,7 @@ export class Employer {
 
   @OneToMany(
     () => Job,
-    job => job.id,
+    jobs => jobs.employer,
     { nullable: true },
   )
   @Field(() => [Job], { nullable: true })

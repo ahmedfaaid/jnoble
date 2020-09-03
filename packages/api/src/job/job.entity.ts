@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
 import { Employer } from '../employer/employer.entity';
@@ -31,6 +32,7 @@ export class Job {
     { onDelete: 'SET NULL' },
   )
   @Field(() => Employer)
+  @JoinColumn({ name: 'employer_id' })
   employer: Employer;
 
   @ManyToOne(
