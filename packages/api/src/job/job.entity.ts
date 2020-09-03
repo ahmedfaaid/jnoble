@@ -43,6 +43,7 @@ export class Job {
     },
   )
   @Field(() => [Talent], { nullable: true })
+  @JoinColumn({ name: 'applications_id' })
   applications: Talent[];
 
   @CreateDateColumn({ name: 'created_at' })
