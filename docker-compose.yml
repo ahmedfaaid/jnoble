@@ -19,6 +19,7 @@ services:
       - 8090:8080
   redis:
     image: 'docker.io/bitnami/redis'
+    restart: always
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
