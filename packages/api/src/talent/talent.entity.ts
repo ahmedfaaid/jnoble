@@ -37,7 +37,7 @@ export class Talent {
 
   @OneToMany(
     () => Job,
-    myJob => myJob.id,
+    myJobs => myJobs.applications,
     { nullable: true },
   )
   @Field(() => [Job], { nullable: true })
