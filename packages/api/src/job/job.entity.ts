@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
 import { Employer } from '../employer/employer.entity';
@@ -35,7 +37,7 @@ export class Job {
   @JoinColumn({ name: 'employer_id' })
   employer: Employer;
 
-  @ManyToOne(
+  @ManyToMany(
     () => Talent,
     applications => applications.myJobs,
     {
@@ -43,7 +45,7 @@ export class Job {
     },
   )
   @Field(() => [Talent], { nullable: true })
-  @JoinColumn({ name: 'applications_id' })
+  @JoinTable({ name: 'applications_id' })
   applications: Talent[];
 
   @CreateDateColumn({ name: 'created_at' })

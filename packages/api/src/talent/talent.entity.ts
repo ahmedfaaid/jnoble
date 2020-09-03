@@ -4,7 +4,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  ManyToMany,
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
 import { Job } from 'src/job/job.entity';
@@ -35,7 +35,7 @@ export class Talent {
   @Column()
   password: string;
 
-  @OneToMany(
+  @ManyToMany(
     () => Job,
     myJobs => myJobs.applications,
     { nullable: true },
