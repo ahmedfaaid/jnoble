@@ -33,7 +33,7 @@ export class TalentService {
 
     if (!validPassword) return null;
 
-    ctx.req.session.userId = user.id;
+    ctx.req.session.user = { id: user.id, role: user.role };
 
     return user;
   }
@@ -47,7 +47,7 @@ export class TalentService {
 
     const savedUser = await this.talentRepository.save(user);
 
-    ctx.req.session.userId = savedUser.id;
+    ctx.req.session.user = { id: savedUser.id, role: savedUser.role };
 
     return savedUser;
   }

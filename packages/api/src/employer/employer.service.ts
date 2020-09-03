@@ -13,7 +13,7 @@ export class EmployerService {
   ) {}
 
   async findAll(): Promise<Employer[]> {
-    return await this.employerRepository.find();
+    return await this.employerRepository.find({ relations: ['jobs'] });
   }
 
   async findOne(id: number): Promise<Employer> {
@@ -35,7 +35,7 @@ export class EmployerService {
 
     if (!validPassword) return null;
 
-    ctx.req.session.userId = user.id;
+    ctx.req.session.user = { id: user.id, role: user.role };
 
     return user;
   }
@@ -49,7 +49,7 @@ export class EmployerService {
 
     const savedUser = await this.employerRepository.save(employer);
 
-    ctx.req.session.userId = savedUser.id;
+    ctx.req.session.user = { id: savedUser.id, role: savedUser.role };
 
     return savedUser;
   }
