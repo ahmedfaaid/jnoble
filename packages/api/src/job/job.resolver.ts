@@ -2,6 +2,8 @@ import { Resolver, Query, Args, Mutation, Context } from '@nestjs/graphql';
 import { JobService } from './job.service';
 import { Job, JobInput } from './job.entity';
 import { MyContext } from 'src/types';
+import { UseGuards } from '@nestjs/common';
+import { EmployerGuard } from 'src/employer/employer.guard';
 
 @Resolver()
 export class JobResolver {
@@ -18,6 +20,7 @@ export class JobResolver {
   }
 
   @Mutation(() => Job)
+  @UseGuards(EmployerGuard)
   async createJob(
     @Args('input') input: JobInput,
     @Context() ctx: MyContext,
