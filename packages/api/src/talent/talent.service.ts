@@ -13,11 +13,11 @@ export class TalentService {
   ) {}
 
   async findAll(): Promise<Talent[]> {
-    return await this.talentRepository.find();
+    return await this.talentRepository.find({ relations: ['myJobs'] });
   }
 
   async findOne(id: number): Promise<Talent> {
-    return await this.talentRepository.findOne(id);
+    return await this.talentRepository.findOne(id, { relations: ['myJobs'] });
   }
 
   async login(
