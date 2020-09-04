@@ -6,12 +6,12 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-  ManyToMany,
-  JoinTable,
+  OneToMany,
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
 import { Employer } from '../employer/employer.entity';
 import { Talent } from '../talent/talent.entity';
+import { JobApplication } from './jobApplication.entity';
 
 @ObjectType()
 @Entity()
@@ -37,16 +37,15 @@ export class Job {
   @JoinColumn({ name: 'employer_id' })
   employer: Employer;
 
-  @ManyToMany(
-    () => Talent,
-    applications => applications.myJobs,
+  @OneToMany(
+    () => JobApplication,
+    jobApplications => jobApplications.job,
     {
       nullable: true,
     },
   )
-  @Field(() => [Talent], { nullable: true })
-  @JoinTable({ name: 'applications_id' })
-  applications: Talent[];
+  @Field(() => [JobApplication], { nullable: true })
+  jobApplications: JobApplication[];
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()

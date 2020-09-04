@@ -4,10 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
+  OneToMany,
 } from 'typeorm';
 import { InputType, ObjectType, Field } from '@nestjs/graphql';
-import { Job } from 'src/job/job.entity';
+import { JobApplication } from 'src/job/jobApplication.entity';
 
 @ObjectType()
 @Entity()
@@ -35,13 +35,13 @@ export class Talent {
   @Column()
   password: string;
 
-  @ManyToMany(
-    () => Job,
-    myJobs => myJobs.applications,
+  @OneToMany(
+    () => JobApplication,
+    jobApplications => jobApplications.applicant,
     { nullable: true },
   )
-  @Field(() => [Job], { nullable: true })
-  myJobs: Job[];
+  @Field(() => [JobApplication], { nullable: true })
+  jobApplications: JobApplication[];
 
   @Column({ default: 'talent' })
   @Field({ nullable: true })
