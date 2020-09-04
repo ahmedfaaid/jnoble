@@ -17,12 +17,18 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type JobApplication {
+  id: Float!
+  job: Job!
+  applicant: Talent!
+}
+
 type Job {
   id: Float!
   title: String!
   description: String!
   employer: Employer!
-  applications: [Talent!]
+  jobApplications: [JobApplication!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -33,7 +39,7 @@ type Talent {
   middleName: String
   lastName: String!
   email: String!
-  myJobs: [Job!]
+  jobApplications: [JobApplication!]
   role: String
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -54,6 +60,7 @@ type Mutation {
   createTalent(input: TalentInput!): Talent!
   createEmployer(input: EmployerInput!): Employer!
   createJob(input: JobInput!): Job!
+  applyToJob(jobId: Float!): Job!
 }
 
 input TalentInput {
