@@ -13,11 +13,23 @@ export class EmployerService {
   ) {}
 
   async findAll(): Promise<Employer[]> {
-    return await this.employerRepository.find({ relations: ['jobs'] });
+    return await this.employerRepository.find({
+      relations: [
+        'jobs',
+        'jobs.jobApplications',
+        'jobs.jobApplications.applicant',
+      ],
+    });
   }
 
   async findOne(id: number): Promise<Employer> {
-    return await this.employerRepository.findOne(id, { relations: ['jobs'] });
+    return await this.employerRepository.findOne(id, {
+      relations: [
+        'jobs',
+        'jobs.jobApplications',
+        'jobs.jobApplications.applicant',
+      ],
+    });
   }
 
   async login(

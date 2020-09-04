@@ -13,11 +13,23 @@ export class TalentService {
   ) {}
 
   async findAll(): Promise<Talent[]> {
-    return await this.talentRepository.find({ relations: ['myJobs'] });
+    return await this.talentRepository.find({
+      relations: [
+        'jobApplications',
+        'jobApplications.applicant',
+        'jobApplications.job',
+      ],
+    });
   }
 
   async findOne(id: number): Promise<Talent> {
-    return await this.talentRepository.findOne(id, { relations: ['myJobs'] });
+    return await this.talentRepository.findOne(id, {
+      relations: [
+        'jobApplications',
+        'jobApplications.applicant',
+        'jobApplications.job',
+      ],
+    });
   }
 
   async login(
@@ -25,7 +37,14 @@ export class TalentService {
     password: string,
     ctx: MyContext,
   ): Promise<Talent> {
-    const user = await this.talentRepository.findOne({ where: { email } });
+    const user = await this.talentRepository.findOne({
+      where: { email },
+      relations: [
+        'jobApplications',
+        'jobApplications.applicant',
+        'jobApplications.job',
+      ],
+    });
 
     if (!user) return null;
 
