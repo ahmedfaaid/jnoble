@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "@jnoble/api",
   "version": "0.0.1",
   "description": "API server for a talent sourcing and recruitment application",
   "author": "Ahmed Alhassan",
