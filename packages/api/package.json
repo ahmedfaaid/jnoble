@@ -1,8 +1,8 @@
 {
   "name": "api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "API server for a talent sourcing and recruitment application",
+  "author": "Ahmed Alhassan",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
