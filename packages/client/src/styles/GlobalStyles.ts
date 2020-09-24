@@ -29,6 +29,7 @@ export const GlobalStyles = createGlobalStyle`
     }
     body {
         line-height: 1;
+        min-height: 100%;
     }
     ol, ul {
         list-style: none;
@@ -52,6 +53,7 @@ export const GlobalStyles = createGlobalStyle`
     html {
         font-size: 10px;
         font-family: ${t.fonts.body};
+        height: 100%100vh;
     }
     body {
         background: #fff;
