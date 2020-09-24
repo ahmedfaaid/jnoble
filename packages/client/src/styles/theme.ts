@@ -9,6 +9,10 @@ declare module 'styled-components' {
       white: string;
       black: string;
     };
+    fonts: {
+      headings: string;
+      body: string;
+    };
   }
 }
 
@@ -19,5 +23,9 @@ export const theme: DefaultTheme = {
     tertiaryColor: '#e0ece4',
     white: '#ffffff',
     black: '#000000',
+  },
+  fonts: {
+    headings: `'Baloo Tammudu 2', cursive`,
+    body: `'Open Sans', sans-serif`,
   },
 };
