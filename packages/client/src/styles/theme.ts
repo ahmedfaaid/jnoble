@@ -25,7 +25,7 @@ export const theme: DefaultTheme = {
     black: '#000000',
   },
   fonts: {
-    headings: `'Baloo Tammudu 2', cursive`,
+    headings: `'Noto Sans JP', sans-serif`,
     body: `'Open Sans', sans-serif`,
   },
 };
