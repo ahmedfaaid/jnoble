@@ -6,6 +6,7 @@ declare module 'styled-components' {
       primaryColor: string;
       secondaryColor: string;
       tertiaryColor: string;
+      blue: string;
       white: string;
       black: string;
     };
@@ -21,11 +22,12 @@ export const theme: DefaultTheme = {
     primaryColor: '#797a7e',
     secondaryColor: '#d8d3cd',
     tertiaryColor: '#e0ece4',
+    blue: '#00bfff',
     white: '#ffffff',
-    black: '#000000',
+    black: '#000000'
   },
   fonts: {
     headings: `'Noto Sans JP', sans-serif`,
-    body: `'Open Sans', sans-serif`,
-  },
+    body: `'Open Sans', sans-serif`
+  }
 };

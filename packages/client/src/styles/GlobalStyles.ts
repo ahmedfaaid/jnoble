@@ -53,7 +53,7 @@ export const GlobalStyles = createGlobalStyle`
     html {
         font-size: 10px;
         font-family: ${t.fonts.body};
-        height: 100%100vh;
+        height: 100%;
     }
     body {
         background: #fff;
