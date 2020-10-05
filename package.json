@@ -7,6 +7,9 @@
     "start-client": "cd packages/client; npm start"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
     "lerna": "^3.22.1"
   }
 }
