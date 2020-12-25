@@ -9,10 +9,6 @@ import {
 } from 'typeorm';
 import { InputType, ObjectType, Field, Int } from '@nestjs/graphql';
 import { Address } from '../address/address.entity';
-import { Skills } from 'src/address/skills.entity';
-
-// TODO: add skills column and entity
-// TODO: add languages column and entity
 
 @ObjectType()
 @Entity()
@@ -41,19 +37,18 @@ export class Candidate {
   @Field()
   email: string;
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, address => address.candidate)
   @JoinColumn()
-  @Field()
+  @Field(() => Address)
   address: Address;
 
   @Column('text', { array: true })
   @Field(() => [String])
   languages: string[];
 
-  @OneToOne(() => Skills)
-  @JoinColumn()
-  @Field()
-  skills: Skills[];
+  @Column('text', { array: true })
+  @Field(() => [String])
+  skills: string[];
 
   @Column({ name: 'own_vehicle' })
   @Field()
@@ -102,7 +97,10 @@ export class CandidateInput {
   email: string;
 
   @Field(() => [String])
-  languages: [string];
+  languages: string[];
+
+  @Field(() => [String])
+  skills: string[];
 
   @Field()
   ownVehicle: boolean;
