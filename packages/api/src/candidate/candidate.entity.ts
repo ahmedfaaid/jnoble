@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { InputType, ObjectType, Field, Int } from '@nestjs/graphql';
 import { Address } from '../address/address.entity';
+import { Skills } from 'src/address/skills.entity';
 
 // TODO: add skills column and entity
 // TODO: add languages column and entity
@@ -48,6 +49,11 @@ export class Candidate {
   @Column('text', { array: true })
   @Field(() => [String])
   languages: string[];
+
+  @OneToOne(() => Skills)
+  @JoinColumn()
+  @Field()
+  skills: Skills[];
 
   @Column({ name: 'own_vehicle' })
   @Field()
