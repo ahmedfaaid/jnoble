@@ -10,14 +10,9 @@ type Province {
   updatedAt: String!
 }
 
-type Address {
+type Skills {
   id: Int!
-  address1: String!
-  address2: String
-  city: String!
-  province: Province!
-  postalCode: String!
-  country: String!
+  name: String!
   createdAt: String!
   updatedAt: String!
 }
@@ -31,11 +26,25 @@ type Candidate {
   email: String!
   address: Address!
   languages: [String!]!
+  skills: [Skills!]!
   ownVehicle: Boolean!
   statusInCanada: String!
   statusExpiry: String
   healthCardNumber: String!
   medicalInformation: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Address {
+  id: Int!
+  candidate: Candidate!
+  address1: String!
+  address2: String
+  city: String!
+  province: Province!
+  postalCode: String!
+  country: String!
   createdAt: String!
   updatedAt: String!
 }
