@@ -1,0 +1,76 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Province {
+  id: Int!
+  name: String!
+  abbr: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Address {
+  id: Int!
+  address1: String!
+  address2: String
+  city: String!
+  province: Province!
+  postalCode: String!
+  country: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Candidate {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  otherNames: String
+  phone: String!
+  email: String!
+  address: Address!
+  languages: [String!]!
+  ownVehicle: Boolean!
+  statusInCanada: String!
+  statusExpiry: String
+  healthCardNumber: String!
+  medicalInformation: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Query {
+  allCandidates: [Candidate!]!
+  candidatesByName(input: String!): [Candidate!]!
+}
+
+type Mutation {
+  addCandidate(province: ProvinceInput!, address: AddressInput!, candidate: CandidateInput!): Candidate!
+}
+
+input ProvinceInput {
+  name: String!
+}
+
+input AddressInput {
+  address1: String!
+  address2: String
+  city: String!
+  postalCode: String!
+  country: String!
+}
+
+input CandidateInput {
+  firstName: String!
+  lastName: String!
+  otherNames: String
+  phone: String!
+  email: String!
+  languages: [String!]!
+  ownVehicle: Boolean!
+  statusInCanada: String!
+  statusExpiry: String
+  healthCardNumber: String!
+  medicalInformation: String!
+}
