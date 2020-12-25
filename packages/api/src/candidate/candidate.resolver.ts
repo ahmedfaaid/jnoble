@@ -19,6 +19,10 @@ export class CandidateResolver {
   }
 
   // TODO: add candidateById query
+  // TODO: add update candidate mutation
+  // TODO: add remove candidate mutation
+  // TODO: add mass addition of candidates
+  // TODO: add filter candidate by parameter
 
   @Mutation(() => Candidate)
   async addCandidate(
