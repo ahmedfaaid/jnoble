@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { InputType, ObjectType, Field, Int } from '@nestjs/graphql';
 import { Province } from './province.entity';
+import { Candidate } from 'src/candidate/candidate.entity';
 
 @ObjectType()
 @Entity()
@@ -16,6 +17,11 @@ export class Address {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
   id: number;
+
+  @OneToOne(() => Candidate, candidate => candidate.address)
+  @JoinColumn()
+  @Field()
+  candidate: Candidate;
 
   @Column({ name: 'address_1' })
   @Field()
