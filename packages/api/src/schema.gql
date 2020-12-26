@@ -10,13 +10,6 @@ type Province {
   updatedAt: String!
 }
 
-type Skills {
-  id: Int!
-  name: String!
-  createdAt: String!
-  updatedAt: String!
-}
-
 type Candidate {
   id: Int!
   firstName: String!
@@ -26,7 +19,7 @@ type Candidate {
   email: String!
   address: Address!
   languages: [String!]!
-  skills: [Skills!]!
+  skills: [String!]!
   ownVehicle: Boolean!
   statusInCanada: String!
   statusExpiry: String
@@ -77,6 +70,7 @@ input CandidateInput {
   phone: String!
   email: String!
   languages: [String!]!
+  skills: [String!]!
   ownVehicle: Boolean!
   statusInCanada: String!
   statusExpiry: String
