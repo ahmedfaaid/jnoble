@@ -14,7 +14,7 @@ export class Province {
   @Field(() => Int)
   id: number;
 
-  @Column({ unique: true })
+  @Column()
   @Field()
   name: string;
 
