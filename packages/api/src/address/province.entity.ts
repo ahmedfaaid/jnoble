@@ -4,8 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { InputType, ObjectType, Field, Int } from '@nestjs/graphql';
+import { Address } from './address.entity';
 
 @ObjectType()
 @Entity()
@@ -21,6 +23,9 @@ export class Province {
   @Column()
   @Field()
   abbr: string;
+
+  @OneToMany(() => Address, address => address.province)
+  address: Address[];
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()

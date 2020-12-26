@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToOne,
+  ManyToOne,
 } from 'typeorm';
 import { InputType, ObjectType, Field, Int } from '@nestjs/graphql';
 import { Province } from './province.entity';
@@ -35,7 +36,7 @@ export class Address {
   @Field()
   city: string;
 
-  @OneToOne(() => Province)
+  @ManyToOne(() => Province, province => province.address)
   @JoinColumn({ name: 'province_id' })
   @Field()
   province: Province;
