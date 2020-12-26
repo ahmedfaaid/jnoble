@@ -45,9 +45,13 @@ export class CandidateService {
       province: prov,
     });
 
-    return await this.candidateRepository.save({
+    const cand = await this.candidateRepository.save({
       ...candidate,
       address: addy,
     });
+
+    await this.addressRepository.save({ ...addy, candidate: cand });
+
+    return cand;
   }
 }
