@@ -19,7 +19,7 @@ export class Address {
   id: number;
 
   @OneToOne(() => Candidate, candidate => candidate.address)
-  @JoinColumn()
+  @JoinColumn({ name: 'candidate_id' })
   @Field()
   candidate: Candidate;
 
@@ -36,7 +36,7 @@ export class Address {
   city: string;
 
   @OneToOne(() => Province)
-  @JoinColumn()
+  @JoinColumn({ name: 'province_id' })
   @Field()
   province: Province;
 
