@@ -33,12 +33,12 @@ export class Candidate {
   @Field()
   phone: string;
 
-  @Column()
+  @Column({ unique: true })
   @Field()
   email: string;
 
   @OneToOne(() => Address, address => address.candidate)
-  @JoinColumn()
+  @JoinColumn({ name: 'address_id' })
   @Field(() => Address)
   address: Address;
 
