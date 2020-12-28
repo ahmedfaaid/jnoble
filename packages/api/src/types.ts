@@ -13,4 +13,4 @@ export type BulkInput = {
   city: string;
   province: string;
   country: string;
-}[];
+};
