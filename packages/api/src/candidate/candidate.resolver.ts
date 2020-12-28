@@ -8,14 +8,19 @@ import { CandidateService } from './candidate.service';
 export class CandidateResolver {
   constructor(private readonly candidateService: CandidateService) {}
 
-  @Query(() => [Candidate])
+  @Query(() => [Candidate], { nullable: true })
   async allCandidates(): Promise<Candidate[]> {
     return await this.candidateService.findAll();
   }
 
-  @Query(() => [Candidate])
+  @Query(() => [Candidate], { nullable: true })
   async candidatesByName(@Args('input') input: string): Promise<Candidate[]> {
     return await this.candidateService.findByName(input);
+  }
+
+  @Query(() => Candidate, { nullable: true })
+  async candidateByEmail(@Args('input') input: string): Promise<Candidate> {
+    return await this.candidateService.findByEmail(input);
   }
 
   // TODO: add candidateById query
