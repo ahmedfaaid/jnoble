@@ -29,6 +29,12 @@ export class CandidateService {
     });
   }
 
+  async findByEmail(input: string): Promise<Candidate> {
+    return await this.candidateRepository.findOne({
+      where: { email: input },
+    });
+  }
+
   // TODO: add findById function
 
   async addCandidate(

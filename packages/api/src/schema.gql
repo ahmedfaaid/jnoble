@@ -43,8 +43,9 @@ type Address {
 }
 
 type Query {
-  allCandidates: [Candidate!]!
-  candidatesByName(input: String!): [Candidate!]!
+  allCandidates: [Candidate!]
+  candidatesByName(input: String!): [Candidate!]
+  candidateByEmail(input: String!): Candidate
 }
 
 type Mutation {
