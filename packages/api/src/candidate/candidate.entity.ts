@@ -10,6 +10,7 @@ import {
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Address } from '../address/address.entity';
 
+// TODO: Make some of these fields nullable
 @ObjectType()
 @Entity()
 export class Candidate {

@@ -1,5 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 
+// TODO: make some of these fields nullable
 @InputType()
 export class CandidateInput {
   @Field()
