@@ -7,7 +7,7 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { InputType, ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Address } from '../address/address.entity';
 
 @ObjectType()
@@ -77,43 +77,4 @@ export class Candidate {
   @UpdateDateColumn({ name: 'updated_at' })
   @Field()
   updatedAt: string;
-}
-
-@InputType()
-export class CandidateInput {
-  @Field()
-  firstName: string;
-
-  @Field()
-  lastName: string;
-
-  @Field({ nullable: true })
-  otherNames?: string;
-
-  @Field()
-  phone: string;
-
-  @Field()
-  email: string;
-
-  @Field(() => [String])
-  languages: string[];
-
-  @Field(() => [String])
-  skills: string[];
-
-  @Field()
-  ownVehicle: boolean;
-
-  @Field()
-  statusInCanada: string;
-
-  @Field({ nullable: true })
-  statusExpiry: string;
-
-  @Field()
-  healthCardNumber: string;
-
-  @Field()
-  medicalInformation: string;
 }
