@@ -34,11 +34,14 @@ export class Candidate {
   @Field()
   phone: string;
 
-  @Column({ unique: true })
-  @Field()
+  @Column({ unique: true, nullable: true })
+  @Field({ nullable: true })
   email: string;
 
-  @OneToOne(() => Address, address => address.candidate)
+  @OneToOne(() => Address, address => address.candidate, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'address_id' })
   @Field(() => Address)
   address: Address;
