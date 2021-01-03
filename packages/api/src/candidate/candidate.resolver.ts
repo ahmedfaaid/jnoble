@@ -46,7 +46,7 @@ export class CandidateResolver {
 
   @Mutation(() => [Candidate])
   async bulkAdd(
-    @Args('bulkInput', { type: () => [CandidateBulkInput] })
+    @Args('bulkInput')
     bulkInput: CandidateBulkInput[],
   ): Promise<Candidate[]> {
     return await this.candidateService.bulkAdd(bulkInput);
