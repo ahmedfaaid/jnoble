@@ -14,28 +14,28 @@ export class CandidateBulkInput {
   @Field()
   phone: string;
 
-  @Field()
+  @Field({ nullable: true })
   email: string;
 
-  @Field()
-  languages: string;
+  @Field({ nullable: true })
+  languages: string[];
 
-  @Field()
-  skills: string;
+  @Field({ nullable: true })
+  skills: string[];
 
-  @Field()
+  @Field({ nullable: true })
   own_vehicle: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   status_in_canada: string;
 
   @Field({ nullable: true })
   status_expiry: string;
 
-  @Field()
+  @Field({ nullable: true })
   health_card_number: string;
 
-  @Field()
+  @Field({ nullable: true })
   medical_information: string;
 
   @Field()
