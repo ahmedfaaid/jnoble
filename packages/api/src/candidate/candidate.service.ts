@@ -87,7 +87,7 @@ export class CandidateService {
   async bulkAdd(bulkInput: CandidateBulkInput[]): Promise<Candidate[]> {
     const addedCandidates = [];
 
-    bulkInput.forEach(async candidate => {
+    for (const candidate of bulkInput) {
       // there has to be a better way to do this
       // don't have time right now though LOL
       const c = {
@@ -96,8 +96,8 @@ export class CandidateService {
         otherNames: candidate.other_names,
         phone: candidate.phone,
         email: candidate.email,
-        languages: [candidate.languages],
-        skills: [candidate.skills],
+        languages: candidate.languages,
+        skills: candidate.skills,
         ownVehicle: candidate.own_vehicle,
         statusInCanada: candidate.status_in_canada,
         statusExpiry: candidate.status_expiry,
@@ -117,21 +117,16 @@ export class CandidateService {
         name: candidate.province,
       };
 
-      // check db if candidate already exists
-      const cand = await this.findByEmail(candidate.email);
+      const all = await this.findAll();
 
-      if (cand) {
-        // if candidate exists in the db, update entry
-        const added = await this.updateCandidate(c, a, p);
-
-        addedCandidates.push(added);
-      } else {
-        // if candidate does not exist in the db, add candidate
-        const added = await this.addCandidate(c, a, p);
-
-        addedCandidates.push(added);
+      for (const x in all) {
+        await this.candidateRepository.delete(x);
       }
-    });
+
+      const added = await this.addCandidate(c, a, p);
+
+      addedCandidates.push(added);
+    }
 
     return addedCandidates;
   }
