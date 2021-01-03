@@ -15,8 +15,8 @@ export class CandidateInput {
   @Field()
   phone: string;
 
-  @Field()
-  email: string;
+  @Field({ nullable: true })
+  email?: string;
 
   @Field(() => [String])
   languages: string[];
