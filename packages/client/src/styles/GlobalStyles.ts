@@ -2,12 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 import { theme as t } from './Theme';
 
 export const GlobalStyles = createGlobalStyle`
-  html, body {
+  *, *::before, *::after {
     margin: 0;
     padding: 0;
-  }
-  *, *::before, *::after {
+    border: 0;
     box-sizing: border-box;
+    vertical-align: baseline;
   }
   html {
     font-size: 62.5%;
