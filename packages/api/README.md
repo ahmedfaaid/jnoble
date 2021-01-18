@@ -4,8 +4,8 @@
 
 ### Candidates
 
-- [ ] - candidateById query
+- [x] - candidateById query
 - [x] - update candidate mutation
-- [ ] - remove candidate mutation
-- [ ] - mass addition of candidates
+- [x] - remove candidate mutation
+- [x] - mass addition of candidates
 - [ ] - filter candidates by parameter
