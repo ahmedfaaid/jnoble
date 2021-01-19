@@ -10,7 +10,8 @@ export const theme: DefaultTheme = {
     blue: '#00BBF0',
     white: {
       1: '#FFFFFF',
-      2: '#F2F2F2'
+      2: '#F2F2F2',
+      3: '#E9ECEF'
     }
   }
 };

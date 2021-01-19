@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Sidebar from './Sidebar';
+import Topbar from './Topbar';
 
 interface LayoutProps {
   children: ReactNode;
@@ -24,7 +25,10 @@ export default function Layout({ children }: LayoutProps) {
       <div>
         <PageLayout>
           <Sidebar />
-          <main>{children}</main>
+          <div style={{ width: '100%' }}>
+            <Topbar />
+            <main>{children}</main>
+          </div>
         </PageLayout>
       </div>
     </>
