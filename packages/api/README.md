@@ -4,8 +4,10 @@
 
 ### Candidates
 
-- [x] - candidateById query
+- [ ] - candidateById query
 - [x] - update candidate mutation
-- [x] - remove candidate mutation
+- [ ] - remove candidate mutation
 - [x] - mass addition of candidates
 - [ ] - filter candidates by parameter
+- [ ] - add job title and date of birth columns to candidate entity
+- [ ] - make most fields nullable
