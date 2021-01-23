@@ -30,6 +30,7 @@ export class CandidateResolver {
   // TODO: add remove candidate mutation
   // TODO: add mass addition of candidates
   // TODO: add filter candidate by parameter
+  // Todo: fix foreign key error when trying to update candidate
 
   @Mutation(() => Candidate)
   async addCandidate(
@@ -38,6 +39,19 @@ export class CandidateResolver {
     @Args('province') province: ProvinceInput,
   ): Promise<Candidate> {
     return await this.candidateService.addCandidate(
+      candidate,
+      address,
+      province,
+    );
+  }
+
+  @Mutation(() => Candidate)
+  async updateCandidate(
+    candidate: CandidateInput,
+    address: AddressInput,
+    province: ProvinceInput,
+  ): Promise<Candidate> {
+    return await this.candidateService.updateCandidate(
       candidate,
       address,
       province,
