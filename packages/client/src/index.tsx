@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'urql';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from './styles/GlobalStyles';
+import { client } from './graphql/urql';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
-    <App />
+    <Provider value={client}>
+      <GlobalStyles />
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
