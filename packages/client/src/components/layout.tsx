@@ -6,13 +6,19 @@ import Topbar from './Topbar';
 
 interface LayoutProps {
   children: ReactNode;
+  page: string;
 }
 
 const PageLayout = styled.div`
   display: flex;
 `;
 
-export default function Layout({ children }: LayoutProps) {
+const Content = styled.div`
+  width: 100%;
+  margin-left: 35rem;
+`;
+
+export default function Layout({ children, page }: LayoutProps) {
   return (
     <>
       <Helmet>
@@ -25,10 +31,10 @@ export default function Layout({ children }: LayoutProps) {
       <div>
         <PageLayout>
           <Sidebar />
-          <div style={{ width: '100%' }}>
-            <Topbar />
+          <Content>
+            <Topbar page={page} />
             <main>{children}</main>
-          </div>
+          </Content>
         </PageLayout>
       </div>
     </>

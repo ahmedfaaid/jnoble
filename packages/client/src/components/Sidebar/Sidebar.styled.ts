@@ -7,7 +7,7 @@ export const SideBarMenu = styled.aside`
   height: 100vh;
   background-color: ${t.colors.primary[1]};
   color: ${t.colors.white[1]};
-  position: sticky;
+  position: fixed;
 
   h1 {
     text-align: center;
