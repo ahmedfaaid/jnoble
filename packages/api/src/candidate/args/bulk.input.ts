@@ -17,10 +17,10 @@ export class CandidateBulkInput {
   @Field({ nullable: true })
   email: string;
 
-  @Field({ nullable: true })
+  @Field(() => [String], { nullable: true })
   languages: string[];
 
-  @Field({ nullable: true })
+  @Field(() => [String], { nullable: true })
   skills: string[];
 
   @Field({ nullable: true })
