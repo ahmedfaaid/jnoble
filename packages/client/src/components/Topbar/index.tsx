@@ -3,10 +3,14 @@ import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
 import ProfilePic from '../../images/tyler-nix-PQeoQdkU9jQ-unsplash.jpg';
 import { TBar, InputContainer, Icon, UserDetails, PFP } from './Topbar.styled';
 
-export default function Topbar() {
+interface ITopbarProps {
+  page: string;
+}
+
+export default function Topbar({ page }: ITopbarProps) {
   return (
     <TBar>
-      <h2>Dashboard</h2>
+      <h2>{page}</h2>
       <InputContainer>
         <Icon icon={faSearch} />
         <input type='text' placeholder='Search...' />
