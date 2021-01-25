@@ -1,5 +1,5 @@
 import { useQuery } from 'urql';
-import CandidateTable from '../components/CandidateTable/CandidateTable';
+import CandidateTable from '../components/CandidateTable';
 import Layout from '../components/layout';
 
 const AllCandidates = `

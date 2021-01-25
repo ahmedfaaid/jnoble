@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { COLUMNS } from '../../table/columns';
 import { Candidate } from '../../types';
+import { TableWrapper } from './CandidateTable.styled';
 
 interface ICandidateTableProps {
   candidates: Candidate[];
@@ -23,7 +24,7 @@ export default function CandidateTable({ candidates }: ICandidateTableProps) {
   } = tableInstance;
 
   return (
-    <div>
+    <TableWrapper>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -49,6 +50,6 @@ export default function CandidateTable({ candidates }: ICandidateTableProps) {
           })}
         </tbody>
       </table>
-    </div>
+    </TableWrapper>
   );
 }

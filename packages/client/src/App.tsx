@@ -6,10 +6,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/candidates'>
+        <Route exact path='/candidates'>
           <Candidates />
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
           <Home />
         </Route>
       </Switch>
