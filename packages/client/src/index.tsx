@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'urql';
+import { ApolloProvider } from '@apollo/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from './styles/GlobalStyles';
-import { client } from './graphql/urql';
+import { client } from './graphql/apollo';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider value={client}>
+    <ApolloProvider client={client}>
       <GlobalStyles />
       <App />
-    </Provider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,8 +1,8 @@
-import { useQuery } from 'urql';
+import { useQuery, gql } from '@apollo/client';
 import CandidateTable from '../components/CandidateTable';
 import Layout from '../components/layout';
 
-const AllCandidates = `
+const AllCandidates = gql`
   query {
     allCandidates {
       id
@@ -15,15 +15,11 @@ const AllCandidates = `
 `;
 
 export default function Candidates() {
-  const [result] = useQuery({
-    query: AllCandidates
-  });
-
-  const { data, fetching, error } = result;
+  const { data, loading, error } = useQuery(AllCandidates);
 
   console.log(data);
 
-  if (fetching) {
+  if (loading) {
     return (
       <Layout page='Candidates'>
         <h1>Loading...</h1>
@@ -41,8 +37,6 @@ export default function Candidates() {
 
   return (
     <Layout page='Candidates'>
-      <h1>Candidates page</h1>
-      {/* <p>{JSON.stringify(data, null, 4)}</p> */}
       <CandidateTable candidates={data.allCandidates} />
     </Layout>
   );
