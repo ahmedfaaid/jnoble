@@ -5,7 +5,7 @@ import { Province, ProvinceInput } from 'src/address/province.entity';
 import { Repository } from 'typeorm';
 import { CandidateBulkInput } from './args/bulk.input';
 import { CandidateInput } from './args/candidate.input';
-import { Candidate } from './candidate.entity';
+import { Candidate, AllCandidatesResponse } from './candidate.entity';
 
 @Injectable()
 export class CandidateService {
@@ -18,17 +18,26 @@ export class CandidateService {
     private readonly provinceRepository: Repository<Province>,
   ) {}
 
-  async findAll(skip?: number): Promise<Candidate[]> {
+  async findAll(skip?: number): Promise<AllCandidatesResponse> {
     if (skip) {
-      return await this.candidateRepository.find({
+      const [
+        allCandidates,
+        count,
+      ] = await this.candidateRepository.findAndCount({
         relations: ['address', 'address.province'],
-        take: 10,
+        take: 15,
         skip,
       });
+      return { allCandidates, count };
     } else if (!skip) {
-      return await this.candidateRepository.find({
+      const [
+        allCandidates,
+        count,
+      ] = await this.candidateRepository.findAndCount({
         relations: ['address', 'address.province'],
+        take: 15,
       });
+      return { allCandidates, count };
     }
   }
 

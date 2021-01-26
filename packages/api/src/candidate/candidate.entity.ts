@@ -82,3 +82,12 @@ export class Candidate {
   @Field()
   updatedAt: string;
 }
+
+@ObjectType()
+export class AllCandidatesResponse {
+  @Field(() => [Candidate])
+  allCandidates: Candidate[];
+
+  @Field(() => Int)
+  count: number;
+}

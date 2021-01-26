@@ -29,6 +29,11 @@ type Candidate {
   updatedAt: String!
 }
 
+type AllCandidatesResponse {
+  allCandidates: [Candidate!]!
+  count: Int!
+}
+
 type Address {
   id: Int!
   candidate: Candidate!
@@ -43,7 +48,7 @@ type Address {
 }
 
 type Query {
-  allCandidates(skip: Int): [Candidate!]
+  allCandidates(skip: Int): AllCandidatesResponse
   candidatesByName(input: String!): [Candidate!]
   candidateByEmail(input: String!): Candidate
 }

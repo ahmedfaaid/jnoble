@@ -3,17 +3,17 @@ import { AddressInput } from 'src/address/address.entity';
 import { ProvinceInput } from 'src/address/province.entity';
 import { CandidateBulkInput } from './args/bulk.input';
 import { CandidateInput } from './args/candidate.input';
-import { Candidate } from './candidate.entity';
+import { Candidate, AllCandidatesResponse } from './candidate.entity';
 import { CandidateService } from './candidate.service';
 
 @Resolver()
 export class CandidateResolver {
   constructor(private readonly candidateService: CandidateService) {}
 
-  @Query(() => [Candidate], { nullable: true })
+  @Query(() => AllCandidatesResponse, { nullable: true })
   async allCandidates(
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
-  ): Promise<Candidate[]> {
+  ): Promise<AllCandidatesResponse> {
     return await this.candidateService.findAll(skip);
   }
 
