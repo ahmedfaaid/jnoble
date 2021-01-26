@@ -86,7 +86,7 @@ export class Candidate {
 @ObjectType()
 export class AllCandidatesResponse {
   @Field(() => [Candidate])
-  allCandidates: Candidate[];
+  items: Candidate[];
 
   @Field(() => Int)
   count: number;

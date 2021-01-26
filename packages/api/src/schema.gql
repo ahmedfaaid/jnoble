@@ -30,7 +30,7 @@ type Candidate {
 }
 
 type AllCandidatesResponse {
-  allCandidates: [Candidate!]!
+  items: [Candidate!]!
   count: Int!
 }
 
