@@ -1,4 +1,4 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, Int } from '@nestjs/graphql';
 import { AddressInput } from 'src/address/address.entity';
 import { ProvinceInput } from 'src/address/province.entity';
 import { CandidateBulkInput } from './args/bulk.input';
@@ -11,8 +11,10 @@ export class CandidateResolver {
   constructor(private readonly candidateService: CandidateService) {}
 
   @Query(() => [Candidate], { nullable: true })
-  async allCandidates(): Promise<Candidate[]> {
-    return await this.candidateService.findAll();
+  async allCandidates(
+    @Args('skip', { type: () => Int, nullable: true }) skip: number,
+  ): Promise<Candidate[]> {
+    return await this.candidateService.findAll(skip);
   }
 
   @Query(() => [Candidate], { nullable: true })

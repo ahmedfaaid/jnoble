@@ -18,10 +18,18 @@ export class CandidateService {
     private readonly provinceRepository: Repository<Province>,
   ) {}
 
-  async findAll(): Promise<Candidate[]> {
-    return await this.candidateRepository.find({
-      relations: ['address', 'address.province'],
-    });
+  async findAll(skip?: number): Promise<Candidate[]> {
+    if (skip) {
+      return await this.candidateRepository.find({
+        relations: ['address', 'address.province'],
+        take: 10,
+        skip,
+      });
+    } else if (!skip) {
+      return await this.candidateRepository.find({
+        relations: ['address', 'address.province'],
+      });
+    }
   }
 
   async findByName(input: string): Promise<Candidate[]> {
@@ -117,7 +125,7 @@ export class CandidateService {
         name: candidate.province,
       };
 
-      const all = await this.findAll();
+      const all = await this.findAll(null);
 
       for (const x in all) {
         await this.candidateRepository.delete(x);

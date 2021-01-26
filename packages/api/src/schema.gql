@@ -43,7 +43,7 @@ type Address {
 }
 
 type Query {
-  allCandidates: [Candidate!]
+  allCandidates(skip: Int): [Candidate!]
   candidatesByName(input: String!): [Candidate!]
   candidateByEmail(input: String!): Candidate
 }
