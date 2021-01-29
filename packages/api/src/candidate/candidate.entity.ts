@@ -26,9 +26,21 @@ export class Candidate {
   @Field()
   lastName: string;
 
-  @Column({ name: 'other_names', nullable: true })
+  @Column({ name: 'middle_name', nullable: true })
   @Field({ nullable: true })
-  otherNames?: string;
+  middleName: string;
+
+  @Column({ name: 'preferred_name', nullable: true })
+  @Field({ nullable: true })
+  preferredName: string;
+
+  @Column({ name: 'date_of_birth' })
+  @Field()
+  dateOfBirth: string;
+
+  @Column({ name: 'job_title' })
+  @Field()
+  jobTitle: string;
 
   @Column()
   @Field()
@@ -54,7 +66,11 @@ export class Candidate {
   @Field(() => [String])
   skills: string[];
 
-  @Column({ name: 'own_vehicle' })
+  @Column({ name: 'valid_drivers_license', nullable: true })
+  @Field()
+  validDriversLicense: boolean;
+
+  @Column({ name: 'own_vehicle', nullable: true })
   @Field()
   ownVehicle: boolean;
 
@@ -62,17 +78,9 @@ export class Candidate {
   @Field()
   statusInCanada: string;
 
-  @Column({ name: 'status_expiry', nullable: true })
-  @Field({ nullable: true })
-  statusExpiry?: string;
-
-  @Column({ name: 'health_card_number' })
+  @Column()
   @Field()
-  healthCardNumber: string;
-
-  @Column({ name: 'medical_information' })
-  @Field()
-  medicalInformation: string;
+  availabile: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()

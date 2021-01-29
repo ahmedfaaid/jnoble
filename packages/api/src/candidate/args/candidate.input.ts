@@ -10,13 +10,22 @@ export class CandidateInput {
   lastName: string;
 
   @Field({ nullable: true })
-  otherNames?: string;
+  middleName: string;
+
+  @Field({ nullable: true })
+  preferredName: string;
+
+  @Field()
+  dateOfBirth: string;
+
+  @Field()
+  jobTitle: string;
 
   @Field()
   phone: string;
 
   @Field({ nullable: true })
-  email?: string;
+  email: string;
 
   @Field(() => [String])
   languages: string[];
@@ -24,18 +33,15 @@ export class CandidateInput {
   @Field(() => [String])
   skills: string[];
 
-  @Field()
+  @Field({ nullable: true })
+  validDriversLicense: boolean;
+
+  @Field({ nullable: true })
   ownVehicle: boolean;
 
   @Field()
   statusInCanada: string;
 
-  @Field({ nullable: true })
-  statusExpiry: string;
-
   @Field()
-  healthCardNumber: string;
-
-  @Field()
-  medicalInformation: string;
+  available: boolean;
 }

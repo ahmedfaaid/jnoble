@@ -9,7 +9,13 @@ export class CandidateBulkInput {
   last_name: string;
 
   @Field({ nullable: true })
-  other_names: string;
+  middle_name: string;
+
+  @Field({ nullable: true })
+  preferred_name: string;
+
+  @Field()
+  date_of_birth: string;
 
   @Field()
   phone: string;
@@ -24,19 +30,16 @@ export class CandidateBulkInput {
   skills: string[];
 
   @Field({ nullable: true })
+  valid_drivers_license: boolean;
+
+  @Field({ nullable: true })
   own_vehicle: boolean;
 
   @Field({ nullable: true })
   status_in_canada: string;
 
-  @Field({ nullable: true })
-  status_expiry: string;
-
-  @Field({ nullable: true })
-  health_card_number: string;
-
-  @Field({ nullable: true })
-  medical_information: string;
+  @Field()
+  available: boolean;
 
   @Field()
   address_1: string;
