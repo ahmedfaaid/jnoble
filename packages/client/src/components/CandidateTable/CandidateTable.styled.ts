@@ -3,7 +3,9 @@ import { theme as t } from '../../styles/Theme';
 
 export const TableWrapper = styled.div`
   width: 80%;
+  min-height: 65rem;
   margin: auto;
+  padding: 2rem 0;
 
   table {
     width: 100%;
