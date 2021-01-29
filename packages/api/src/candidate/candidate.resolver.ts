@@ -1,7 +1,6 @@
 import { Resolver, Query, Args, Mutation, Int } from '@nestjs/graphql';
 import { AddressInput } from 'src/address/address.entity';
 import { ProvinceInput } from 'src/address/province.entity';
-import { CandidateBulkInput } from './args/bulk.input';
 import { CandidateInput } from './args/candidate.input';
 import { Candidate, AllCandidatesResponse } from './candidate.entity';
 import { CandidateService } from './candidate.service';
@@ -58,13 +57,5 @@ export class CandidateResolver {
       address,
       province,
     );
-  }
-
-  @Mutation(() => [Candidate])
-  async bulkAdd(
-    @Args('bulkInput', { type: () => [CandidateBulkInput] })
-    bulkInput: CandidateBulkInput[],
-  ): Promise<Candidate[]> {
-    return await this.candidateService.bulkAdd(bulkInput);
   }
 }
