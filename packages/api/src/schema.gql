@@ -14,17 +14,19 @@ type Candidate {
   id: Int!
   firstName: String!
   lastName: String!
-  otherNames: String
+  middleName: String
+  preferredName: String
+  dateOfBirth: String!
+  jobTitle: String!
   phone: String!
   email: String
   address: Address!
   languages: [String!]!
   skills: [String!]!
+  validDriversLicense: Boolean!
   ownVehicle: Boolean!
   statusInCanada: String!
-  statusExpiry: String
-  healthCardNumber: String!
-  medicalInformation: String!
+  availabile: Boolean!
   createdAt: String!
   updatedAt: String!
 }
@@ -56,7 +58,6 @@ type Query {
 type Mutation {
   addCandidate(province: ProvinceInput!, address: AddressInput!, candidate: CandidateInput!): Candidate!
   updateCandidate: Candidate!
-  bulkAdd(bulkInput: [CandidateBulkInput!]!): [Candidate!]!
 }
 
 input ProvinceInput {
@@ -74,35 +75,16 @@ input AddressInput {
 input CandidateInput {
   firstName: String!
   lastName: String!
-  otherNames: String
+  middleName: String
+  preferredName: String
+  dateOfBirth: String!
+  jobTitle: String!
   phone: String!
   email: String
   languages: [String!]!
   skills: [String!]!
-  ownVehicle: Boolean!
+  validDriversLicense: Boolean
+  ownVehicle: Boolean
   statusInCanada: String!
-  statusExpiry: String
-  healthCardNumber: String!
-  medicalInformation: String!
-}
-
-input CandidateBulkInput {
-  first_name: String!
-  last_name: String!
-  other_names: String
-  phone: String!
-  email: String
-  languages: [String!]
-  skills: [String!]
-  own_vehicle: Boolean
-  status_in_canada: String
-  status_expiry: String
-  health_card_number: String
-  medical_information: String
-  address_1: String!
-  address_2: String
-  city: String!
-  province: String!
-  postal_code: String!
-  country: String!
+  available: Boolean!
 }
