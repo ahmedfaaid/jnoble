@@ -19,9 +19,7 @@ export class Address {
   @Field(() => Int)
   id: number;
 
-  @OneToOne(() => Candidate, candidate => candidate.address, {
-    onDelete: 'CASCADE',
-  })
+  @OneToOne(() => Candidate, candidate => candidate.address)
   @JoinColumn({ name: 'candidate_id' })
   @Field()
   candidate: Candidate;
@@ -38,7 +36,7 @@ export class Address {
   @Field()
   city: string;
 
-  @ManyToOne(() => Province, province => province.address, { cascade: true })
+  @ManyToOne(() => Province, province => province.address)
   @JoinColumn({ name: 'province_id' })
   @Field()
   province: Province;

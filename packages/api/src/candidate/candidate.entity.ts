@@ -51,7 +51,7 @@ export class Candidate {
   email: string;
 
   @OneToOne(() => Address, address => address.candidate, {
-    cascade: true,
+    cascade: ['insert', 'update'],
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'address_id' })
@@ -80,7 +80,7 @@ export class Candidate {
 
   @Column()
   @Field()
-  availabile: boolean;
+  available: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()
