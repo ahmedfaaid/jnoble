@@ -9,7 +9,7 @@ export const TBar = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 10px -5px;
+  box-shadow: ${t.shadow};
 
   h2 {
     margin-left: 5rem;
