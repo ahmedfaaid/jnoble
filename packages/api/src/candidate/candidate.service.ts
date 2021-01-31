@@ -101,12 +101,13 @@ export class CandidateService {
 
       await this.candidateRepository.update(id, {
         ...cand,
+        address: candidate.address,
+      });
+    } else {
+      await this.candidateRepository.update(id, {
+        ...(input as CandidateUpdateInput),
       });
     }
-
-    await this.candidateRepository.update(id, {
-      ...input,
-    });
 
     return await this.candidateRepository.findOne(id, {
       relations: ['address', 'address.province'],
