@@ -64,7 +64,7 @@ export class AddressInput {
   address1: string;
 
   @Field({ nullable: true })
-  address2?: string;
+  address2: string;
 
   @Field()
   city: string;
