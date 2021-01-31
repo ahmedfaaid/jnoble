@@ -53,6 +53,7 @@ type Query {
   allCandidates(skip: Int): AllCandidatesResponse
   candidatesByName(input: String!): [Candidate!]
   candidateByEmail(input: String!): Candidate
+  candidateById(id: Int!): Candidate
 }
 
 type Mutation {

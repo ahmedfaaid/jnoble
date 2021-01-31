@@ -26,7 +26,13 @@ export class CandidateResolver {
     return await this.candidateService.findByEmail(input);
   }
 
-  // TODO: add candidateById query
+  @Query(() => Candidate, { nullable: true })
+  async candidateById(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<Candidate> {
+    return await this.candidateService.findById(id);
+  }
+
   // TODO: add remove candidate mutation
   // TODO: add mass addition of candidates
   // TODO: add filter candidate by parameter

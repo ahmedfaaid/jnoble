@@ -48,7 +48,11 @@ export class CandidateService {
     });
   }
 
-  // TODO: add findById function
+  async findById(id: number): Promise<Candidate> {
+    return await this.candidateRepository.findOne(id, {
+      relations: ['address', 'address.province'],
+    });
+  }
 
   async addCandidate(
     candidate: CandidateInput,
