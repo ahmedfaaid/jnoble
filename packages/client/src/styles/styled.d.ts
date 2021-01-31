@@ -21,5 +21,6 @@ interface IColors {
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: IColors;
+    shadow: string;
   }
 }

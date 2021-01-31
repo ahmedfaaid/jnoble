@@ -13,5 +13,6 @@ export const theme: DefaultTheme = {
       2: '#F2F2F2',
       3: '#E9ECEF'
     }
-  }
+  },
+  shadow: '0 2px 10px -5px'
 };
