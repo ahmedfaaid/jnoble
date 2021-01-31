@@ -57,7 +57,7 @@ type Query {
 
 type Mutation {
   addCandidate(province: ProvinceInput!, address: AddressInput!, candidate: CandidateInput!): Candidate!
-  updateCandidate: Candidate!
+  updateCandidate(province: ProvinceInput, input: CandidateUpdateInput, id: Float!): Candidate!
 }
 
 input ProvinceInput {
@@ -87,4 +87,22 @@ input CandidateInput {
   ownVehicle: Boolean
   statusInCanada: String!
   available: Boolean!
+}
+
+input CandidateUpdateInput {
+  firstName: String
+  lastName: String
+  middleName: String
+  preferredName: String
+  dateOfBirth: String
+  jobTitle: String
+  phone: String
+  email: String
+  address: AddressInput
+  languages: [String!]
+  skills: [String!]
+  validDriversLicense: Boolean
+  ownVehicle: Boolean
+  statusInCanada: String
+  available: Boolean
 }

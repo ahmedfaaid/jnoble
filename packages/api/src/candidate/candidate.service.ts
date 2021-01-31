@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Address, AddressInput } from 'src/address/address.entity';
 import { Province, ProvinceInput } from 'src/address/province.entity';
 import { Repository } from 'typeorm';
-import { CandidateInput } from './args/candidate.input';
+import { CandidateInput, CandidateUpdateInput } from './args/candidate.input';
 import { Candidate, AllCandidatesResponse } from './candidate.entity';
 
 @Injectable()
@@ -75,22 +75,41 @@ export class CandidateService {
   }
 
   async updateCandidate(
-    candidate: CandidateInput,
-    address: AddressInput,
+    id: number,
+    input: CandidateUpdateInput,
     province: ProvinceInput,
   ): Promise<Candidate> {
-    const prov = await this.provinceRepository.findOne({
-      where: { name: province.name },
+    let prov;
+
+    const candidate = await this.candidateRepository.findOne(id, {
+      relations: ['address', 'address.province'],
     });
 
-    const addy = await this.addressRepository.save({
-      ...address,
-      province: prov,
+    if (province) {
+      prov = await this.provinceRepository.findOne({
+        where: { name: province.name },
+      });
+    }
+
+    if ('address' in input) {
+      const { address, ...cand } = input;
+
+      await this.addressRepository.update(candidate.address.id, {
+        ...address,
+        province: prov,
+      });
+
+      await this.candidateRepository.update(id, {
+        ...cand,
+      });
+    }
+
+    await this.candidateRepository.update(id, {
+      ...input,
     });
 
-    return await this.candidateRepository.save({
-      ...candidate,
-      address: addy,
+    return await this.candidateRepository.findOne(id, {
+      relations: ['address', 'address.province'],
     });
   }
 }

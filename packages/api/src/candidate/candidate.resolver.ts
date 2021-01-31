@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, Mutation, Int } from '@nestjs/graphql';
 import { AddressInput } from 'src/address/address.entity';
 import { ProvinceInput } from 'src/address/province.entity';
-import { CandidateInput } from './args/candidate.input';
+import { CandidateInput, CandidateUpdateInput } from './args/candidate.input';
 import { Candidate, AllCandidatesResponse } from './candidate.entity';
 import { CandidateService } from './candidate.service';
 
@@ -48,14 +48,10 @@ export class CandidateResolver {
 
   @Mutation(() => Candidate)
   async updateCandidate(
-    candidate: CandidateInput,
-    address: AddressInput,
-    province: ProvinceInput,
+    @Args('id') id: number,
+    @Args('input', { nullable: true }) input: CandidateUpdateInput,
+    @Args('province', { nullable: true }) province: ProvinceInput,
   ): Promise<Candidate> {
-    return await this.candidateService.updateCandidate(
-      candidate,
-      address,
-      province,
-    );
+    return await this.candidateService.updateCandidate(id, input, province);
   }
 }
