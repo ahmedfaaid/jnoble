@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import CandidateTable from '../components/CandidateTable';
+import styled from 'styled-components';
 import Layout from '../components/layout';
 import Pagination from '../components/Pagination';
 import { Loading, LoadingWrapper } from '../styles/utils';
+import CandidateCard from '../components/CandidateCard';
+import { Candidate } from '../types';
 
 const AllCandidates = gql`
   query($skip: Int) {
@@ -12,12 +14,27 @@ const AllCandidates = gql`
         id
         firstName
         lastName
+        jobTitle
         phone
         email
+        address {
+          city
+          province {
+            name
+          }
+          country
+        }
       }
       count
     }
   }
+`;
+
+const ContentWrapper = styled.div`
+  width: 100%;
+  min-height: 65rem;
+  padding: 2rem;
+  display: flex;
 `;
 
 export default function Candidates() {
@@ -50,7 +67,11 @@ export default function Candidates() {
 
   return (
     <Layout page='Candidates'>
-      <CandidateTable candidates={data.allCandidates.items} />
+      <ContentWrapper>
+        {data.allCandidates.items.map((candidate: Candidate) => (
+          <CandidateCard candidate={candidate} />
+        ))}
+      </ContentWrapper>
       <Pagination
         totalItems={data.allCandidates.count}
         limit={skip}
