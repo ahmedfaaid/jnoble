@@ -14,5 +14,8 @@ export const theme: DefaultTheme = {
       3: '#E9ECEF'
     }
   },
-  shadow: '0 2px 10px -5px'
+  shadow: {
+    1: '0 2px 10px -5px',
+    2: '0 5px 10px -5px'
+  }
 };

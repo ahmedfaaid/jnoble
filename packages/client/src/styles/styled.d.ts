@@ -18,9 +18,14 @@ interface IColors {
   white: IWhite;
 }
 
+interface IShadow {
+  1: string;
+  2: string;
+}
+
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: IColors;
-    shadow: string;
+    shadow: IShadow;
   }
 }
