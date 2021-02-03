@@ -46,8 +46,8 @@ export class Candidate {
   @Field()
   phone: string;
 
-  @Column({ unique: true, nullable: true })
-  @Field({ nullable: true })
+  @Column({ unique: true })
+  @Field()
   email: string;
 
   @OneToOne(() => Address, address => address.candidate, {
@@ -58,11 +58,11 @@ export class Candidate {
   @Field(() => Address)
   address: Address;
 
-  @Column('text', { array: true })
+  @Column('text', { array: true, nullable: true })
   @Field(() => [String])
   languages: string[];
 
-  @Column('text', { array: true })
+  @Column('text', { array: true, nullable: true })
   @Field(() => [String])
   skills: string[];
 
