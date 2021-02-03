@@ -23,7 +23,7 @@ export class CandidateService {
     if (skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
         relations: ['address', 'address.province'],
-        take: 10,
+        take: 12,
         skip,
       });
       return { items, count };
