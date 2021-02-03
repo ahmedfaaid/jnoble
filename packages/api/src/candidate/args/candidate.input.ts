@@ -50,47 +50,47 @@ export class CandidateInput {
 @InputType()
 export class CandidateUpdateInput {
   @Field({ nullable: true })
-  firstName: string;
+  firstName?: string;
 
   @Field({ nullable: true })
-  lastName: string;
+  lastName?: string;
 
   @Field({ nullable: true })
-  middleName: string;
+  middleName?: string;
 
   @Field({ nullable: true })
-  preferredName: string;
+  preferredName?: string;
 
   @Field({ nullable: true })
-  dateOfBirth: string;
+  dateOfBirth?: string;
 
   @Field({ nullable: true })
-  jobTitle: string;
+  jobTitle?: string;
 
   @Field({ nullable: true })
-  phone: string;
+  phone?: string;
 
   @Field({ nullable: true })
-  email: string;
+  email?: string;
 
   @Field({ nullable: true })
-  address: AddressInput;
+  address?: AddressInput;
 
   @Field(() => [String], { nullable: true })
-  languages: string[];
+  languages?: string[];
 
   @Field(() => [String], { nullable: true })
-  skills: string[];
+  skills?: string[];
 
   @Field({ nullable: true })
-  validDriversLicense: boolean;
+  validDriversLicense?: boolean;
 
   @Field({ nullable: true })
-  ownVehicle: boolean;
+  ownVehicle?: boolean;
 
   @Field({ nullable: true })
-  statusInCanada: string;
+  statusInCanada?: string;
 
   @Field({ nullable: true })
-  available: boolean;
+  available?: boolean;
 }
