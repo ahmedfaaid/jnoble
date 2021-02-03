@@ -19,7 +19,7 @@ type Candidate {
   dateOfBirth: String!
   jobTitle: String!
   phone: String!
-  email: String
+  email: String!
   address: Address!
   languages: [String!]!
   skills: [String!]!
@@ -59,6 +59,7 @@ type Query {
 type Mutation {
   addCandidate(province: ProvinceInput!, address: AddressInput!, candidate: CandidateInput!): Candidate!
   updateCandidate(province: ProvinceInput, input: CandidateUpdateInput, id: Float!): Candidate!
+  bulkAdd: [Candidate!]!
 }
 
 input ProvinceInput {
@@ -81,7 +82,7 @@ input CandidateInput {
   dateOfBirth: String!
   jobTitle: String!
   phone: String!
-  email: String
+  email: String!
   languages: [String!]!
   skills: [String!]!
   validDriversLicense: Boolean
