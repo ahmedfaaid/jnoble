@@ -18,9 +18,12 @@ export class CandidateBulkInput {
   date_of_birth: string;
 
   @Field()
+  job_title: string;
+
+  @Field()
   phone: string;
 
-  @Field({ nullable: true })
+  @Field()
   email: string;
 
   @Field(() => [String], { nullable: true })
