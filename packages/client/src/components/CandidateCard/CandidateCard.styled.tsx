@@ -4,7 +4,7 @@ import { theme as t } from '../../styles/Theme';
 export const Card = styled.div`
   width: 35rem;
   height: 18rem;
-  margin: 0 5rem;
+  margin: 2rem 5rem;
   padding: 1.5rem;
   background-color: ${t.colors.white[1]};
   border-radius: 1rem;
