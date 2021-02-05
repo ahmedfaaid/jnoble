@@ -6,6 +6,7 @@ export interface Candidate {
   phone: string;
   email: string;
   address: Address;
+  available: boolean;
 }
 
 interface Address {
