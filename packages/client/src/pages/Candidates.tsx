@@ -24,6 +24,7 @@ const AllCandidates = gql`
           }
           country
         }
+        available
       }
       count
     }
@@ -35,6 +36,8 @@ const ContentWrapper = styled.div`
   min-height: 65rem;
   padding: 2rem;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 export default function Candidates() {
