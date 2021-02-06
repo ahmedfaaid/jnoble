@@ -9,6 +9,7 @@ export const Card = styled.div`
   background-color: ${t.colors.white[1]};
   border-radius: 1rem;
   box-shadow: ${t.shadow[1]};
+  position: relative;
 
   &:hover {
     box-shadow: ${t.shadow[2]};
