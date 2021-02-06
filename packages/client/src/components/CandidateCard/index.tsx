@@ -21,6 +21,7 @@ export default function CandidateCard({ candidate }: ICandidateCard) {
 
   return (
     <Card>
+      <input type='checkbox' name='candidate' id='candidate' />
       <h3>
         {firstName} {lastName}
       </h3>

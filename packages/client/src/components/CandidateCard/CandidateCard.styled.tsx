@@ -32,4 +32,41 @@ export const Card = styled.div`
       margin-bottom: 0.5rem;
     }
   }
+
+  input {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    appearance: none;
+    background-color: ${t.colors.grey[3]};
+    cursor: pointer;
+    border-bottom-right-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+
+    &:hover {
+      background-color: ${t.colors.grey[2]};
+    }
+
+    &::after {
+      display: none;
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: ${t.colors.white[1]};
+      content: '\f00c';
+    }
+
+    &:checked {
+      background-color: ${t.colors.primary[1]};
+    }
+
+    &:checked::after {
+      display: block;
+    }
+  }
 `;
