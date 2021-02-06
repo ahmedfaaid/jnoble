@@ -42,6 +42,7 @@ const ContentWrapper = styled.div`
 
 export default function Candidates() {
   const [skip, setSkip] = useState(0);
+  const [take] = useState(12);
 
   const { data, loading, error } = useQuery(AllCandidates, {
     variables: {
@@ -79,6 +80,7 @@ export default function Candidates() {
         totalItems={data.allCandidates.count}
         limit={skip}
         setSkip={setSkip}
+        take={take}
       />
     </Layout>
   );
