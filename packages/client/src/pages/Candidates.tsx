@@ -72,7 +72,7 @@ export default function Candidates() {
     <Layout page='Candidates'>
       <ContentWrapper>
         {data.allCandidates.items.map((candidate: Candidate) => (
-          <CandidateCard candidate={candidate} />
+          <CandidateCard candidate={candidate} key={candidate.id} />
         ))}
       </ContentWrapper>
       <Pagination
