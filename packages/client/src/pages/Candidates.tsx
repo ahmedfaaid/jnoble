@@ -22,6 +22,9 @@ const ContentWrapper = styled.div`
 export default function Candidates() {
   const [skip, setSkip] = useState(0);
   const [take] = useState(12);
+  const [selectedCandidates, setSelectedCandidates] = useState<number[]>([]);
+
+  console.log('selectedCandidates', selectedCandidates);
 
   const { data, loading, error } = useQuery(AllCandidates, {
     variables: {
@@ -53,7 +56,12 @@ export default function Candidates() {
     <Layout page='Candidates'>
       <ContentWrapper>
         {data.allCandidates.items.map((candidate: Candidate) => (
-          <CandidateCard candidate={candidate} key={candidate.id} />
+          <CandidateCard
+            candidate={candidate}
+            key={candidate.id}
+            selectedCandidates={selectedCandidates}
+            setSelectedCandidates={setSelectedCandidates}
+          />
         ))}
       </ContentWrapper>
       <Pagination

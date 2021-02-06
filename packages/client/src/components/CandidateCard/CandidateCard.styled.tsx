@@ -42,7 +42,7 @@ export const Card = styled.div`
     appearance: none;
     background-color: ${t.colors.grey[3]};
     cursor: pointer;
-    border-bottom-right-radius: 1rem;
+    border-bottom-right-radius: 0.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
