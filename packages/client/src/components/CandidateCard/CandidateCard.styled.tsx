@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { theme as t } from '../../styles/Theme';
 
 export const Card = styled.div`
-  width: 35rem;
-  height: 18rem;
-  margin: 2rem 5rem;
+  width: 38rem;
+  height: 20rem;
+  margin: 2rem 3.5rem;
   padding: 1.5rem;
   background-color: ${t.colors.white[1]};
   border-radius: 1rem;
