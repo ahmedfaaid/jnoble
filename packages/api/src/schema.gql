@@ -50,7 +50,7 @@ type Address {
 }
 
 type Query {
-  allCandidates(skip: Int, take: Float!): AllCandidatesResponse
+  allCandidates(skip: Int, take: Int!): AllCandidatesResponse
   candidatesByName(input: String!): [Candidate!]
   candidateByEmail(input: String!): Candidate
   candidateById(id: Int!): Candidate

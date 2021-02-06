@@ -12,7 +12,7 @@ export class CandidateResolver {
 
   @Query(() => AllCandidatesResponse, { nullable: true })
   async allCandidates(
-    @Args('take') take: number,
+    @Args('take', { type: () => Int }) take: number,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
   ): Promise<AllCandidatesResponse> {
     return await this.candidateService.findAll(take, skip);
