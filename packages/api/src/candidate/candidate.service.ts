@@ -19,18 +19,18 @@ export class CandidateService {
     private readonly provinceRepository: Repository<Province>,
   ) {}
 
-  async findAll(skip?: number): Promise<AllCandidatesResponse> {
+  async findAll(take: number, skip?: number): Promise<AllCandidatesResponse> {
     if (skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
         relations: ['address', 'address.province'],
-        take: 12,
+        take,
         skip,
       });
       return { items, count };
     } else if (!skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
         relations: ['address', 'address.province'],
-        take: 12,
+        take,
       });
       return { items, count };
     }
