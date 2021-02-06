@@ -1,35 +1,14 @@
 import { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
+import { loader } from 'graphql.macro';
 import Layout from '../components/layout';
 import Pagination from '../components/Pagination';
 import { Loading, LoadingWrapper } from '../styles/utils';
 import CandidateCard from '../components/CandidateCard';
 import { Candidate } from '../types';
 
-const AllCandidates = gql`
-  query($skip: Int) {
-    allCandidates(skip: $skip) {
-      items {
-        id
-        firstName
-        lastName
-        jobTitle
-        phone
-        email
-        address {
-          city
-          province {
-            name
-          }
-          country
-        }
-        available
-      }
-      count
-    }
-  }
-`;
+const AllCandidates = loader('../graphql/queries/allCandidates.graphql');
 
 const ContentWrapper = styled.div`
   width: 100%;
@@ -46,7 +25,8 @@ export default function Candidates() {
 
   const { data, loading, error } = useQuery(AllCandidates, {
     variables: {
-      skip
+      skip,
+      take
     }
   });
 

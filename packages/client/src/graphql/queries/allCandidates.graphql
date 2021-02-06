@@ -1,0 +1,21 @@
+query GetAllCandidates($take: Int!, $skip: Int) {
+  allCandidates(take: $take, skip: $skip) {
+    items {
+      id
+      firstName
+      lastName
+      jobTitle
+      phone
+      email
+      address {
+        city
+        province {
+          name
+        }
+        country
+      }
+      available
+    }
+    count
+  }
+}
