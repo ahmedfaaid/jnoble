@@ -47,6 +47,7 @@ export const Card = styled.div`
     justify-content: center;
     align-items: center;
     outline: none;
+    transition: all 0.1s ease-in;
 
     &:hover {
       background-color: ${t.colors.grey[2]};
