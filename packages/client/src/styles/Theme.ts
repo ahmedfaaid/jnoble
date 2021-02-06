@@ -13,7 +13,7 @@ export const theme: DefaultTheme = {
       2: '#F2F2F2',
       3: '#E9ECEF'
     },
-    green: '#006400',
+    green: '#84b701',
     red: '#d01c1f'
   },
   shadow: {
