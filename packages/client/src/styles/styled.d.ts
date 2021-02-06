@@ -12,12 +12,19 @@ interface IWhite {
   3: string;
 }
 
+interface IGrey {
+  1: string;
+  2: string;
+  3: string;
+}
+
 interface IColors {
   primary: IPrimary;
   blue: string;
   white: IWhite;
   green: string;
   red: string;
+  grey: IGrey;
 }
 
 interface IShadow {

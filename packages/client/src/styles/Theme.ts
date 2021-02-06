@@ -14,7 +14,12 @@ export const theme: DefaultTheme = {
       3: '#E9ECEF'
     },
     green: '#84b701',
-    red: '#d01c1f'
+    red: '#d01c1f',
+    grey: {
+      1: '#a9a9a9',
+      2: '#c0c0c0',
+      3: '#696969'
+    }
   },
   shadow: {
     1: '0 2px 10px -5px',
