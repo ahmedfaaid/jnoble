@@ -12,7 +12,9 @@ export const theme: DefaultTheme = {
       1: '#FFFFFF',
       2: '#F2F2F2',
       3: '#E9ECEF'
-    }
+    },
+    green: '#006400',
+    red: '#d01c1f'
   },
   shadow: {
     1: '0 2px 10px -5px',

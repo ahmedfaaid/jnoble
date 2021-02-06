@@ -16,6 +16,8 @@ interface IColors {
   primary: IPrimary;
   blue: string;
   white: IWhite;
+  green: string;
+  red: string;
 }
 
 interface IShadow {
