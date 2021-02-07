@@ -145,6 +145,9 @@ export class CandidateService {
       const cand = await this.candidateRepository.findOne({ email });
 
       if (cand) {
+        const lang = [];
+        const sk = [];
+
         const updateInput = {
           firstName: first_name,
           lastName: last_name,
@@ -153,8 +156,8 @@ export class CandidateService {
           dateOfBirth: date_of_birth,
           jobTitle: job_title,
           phone,
-          languages: [...languages],
-          skills: [...skills],
+          languages: lang.concat(languages),
+          skills: sk.concat(skills),
           validDriversLicense: valid_drivers_license,
           ownVehicle: own_vehicle,
           statusInCanada: status_in_canada,
@@ -180,6 +183,9 @@ export class CandidateService {
 
         addedCandidates.push(updatedCand);
       } else {
+        const lang = [];
+        const sk = [];
+
         const candInput = {
           firstName: first_name,
           lastName: last_name,
@@ -189,8 +195,8 @@ export class CandidateService {
           jobTitle: job_title,
           phone,
           email,
-          languages: [...languages],
-          skills: [...skills],
+          languages: lang.concat(languages),
+          skills: sk.concat(skills),
           validDriversLicense: valid_drivers_license,
           ownVehicle: own_vehicle,
           statusInCanada: status_in_canada,
