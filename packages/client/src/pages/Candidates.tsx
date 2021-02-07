@@ -7,6 +7,7 @@ import Pagination from '../components/Pagination';
 import { Loading, LoadingWrapper } from '../styles/utils';
 import CandidateCard from '../components/CandidateCard';
 import { Candidate } from '../types';
+import Modal from '../components/Modal';
 
 const AllCandidates = loader('../graphql/queries/allCandidates.graphql');
 
@@ -23,6 +24,7 @@ export default function Candidates() {
   const [skip, setSkip] = useState(0);
   const [take] = useState(12);
   const [selectedCandidates, setSelectedCandidates] = useState<number[]>([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   console.log('selectedCandidates', selectedCandidates);
 
@@ -54,6 +56,7 @@ export default function Candidates() {
 
   return (
     <Layout page='Candidates'>
+      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <ContentWrapper>
         {data.allCandidates.items.map((candidate: Candidate) => (
           <CandidateCard
@@ -61,6 +64,8 @@ export default function Candidates() {
             key={candidate.id}
             selectedCandidates={selectedCandidates}
             setSelectedCandidates={setSelectedCandidates}
+            open={modalOpen}
+            setOpen={setModalOpen}
           />
         ))}
       </ContentWrapper>

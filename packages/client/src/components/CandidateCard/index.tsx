@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, MouseEventHandler } from 'react';
 import { Candidate } from '../../types';
 import AvailabilityIndicator from '../AvailabilityIndicator';
 import { Card } from './CandidateCard.styled';
@@ -7,12 +7,16 @@ interface ICandidateCard {
   candidate: Candidate;
   selectedCandidates: number[];
   setSelectedCandidates: Dispatch<SetStateAction<number[]>>;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function CandidateCard({
   candidate,
   selectedCandidates,
-  setSelectedCandidates
+  setSelectedCandidates,
+  open,
+  setOpen
 }: ICandidateCard) {
   const {
     id,
@@ -26,6 +30,10 @@ export default function CandidateCard({
   } = candidate;
   const { city, province, country } = address;
   const { name: prov } = province;
+
+  const openModal: MouseEventHandler<HTMLDivElement> = e => {
+    setOpen(!open);
+  };
 
   const handleChange = (value: string, checked: boolean) => {
     if (checked) {
@@ -65,15 +73,17 @@ export default function CandidateCard({
         value={id}
         onChange={e => handleChange(e.target.value, e.target.checked)}
       />
-      <h3>
-        {firstName} {lastName}
-      </h3>
-      <p>{jobTitle}</p>
-      <p>
-        {city}, {prov}, {country}
-      </p>
-      <p>{phone}</p>
-      <p>{email}</p>
+      <div style={{ width: '100%', height: '100%' }} onClick={openModal}>
+        <h3>
+          {firstName} {lastName}
+        </h3>
+        <p>{jobTitle}</p>
+        <p>
+          {city}, {prov}, {country}
+        </p>
+        <p>{phone}</p>
+        <p>{email}</p>
+      </div>
       <AvailabilityIndicator available={available} />
     </Card>
   );

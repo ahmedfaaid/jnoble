@@ -40,7 +40,7 @@ export default function Layout({ children, page }: LayoutProps) {
           <Sidebar />
           <Content>
             <Topbar page={page} />
-            <main>{children}</main>
+            <main style={{ position: 'relative' }}>{children}</main>
           </Content>
         </PageLayout>
       </div>
