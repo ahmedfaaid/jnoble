@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { loader } from 'graphql.macro';
@@ -23,9 +23,11 @@ const ContentWrapper = styled.div`
 export default function Candidates() {
   const [skip, setSkip] = useState(0);
   const [take] = useState(12);
+  const [detailedCandidate, setDetailedCandidate] = useState<number>();
   const [selectedCandidates, setSelectedCandidates] = useState<number[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
 
+  console.log('detailedCandidate', detailedCandidate);
   console.log('selectedCandidates', selectedCandidates);
 
   const { data, loading, error } = useQuery(AllCandidates, {
@@ -59,14 +61,16 @@ export default function Candidates() {
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <ContentWrapper>
         {data.allCandidates.items.map((candidate: Candidate) => (
-          <CandidateCard
-            candidate={candidate}
-            key={candidate.id}
-            selectedCandidates={selectedCandidates}
-            setSelectedCandidates={setSelectedCandidates}
-            open={modalOpen}
-            setOpen={setModalOpen}
-          />
+          <Fragment key={candidate.id}>
+            <CandidateCard
+              candidate={candidate}
+              selectedCandidates={selectedCandidates}
+              setSelectedCandidates={setSelectedCandidates}
+              setDetailedCandidate={setDetailedCandidate}
+              open={modalOpen}
+              setOpen={setModalOpen}
+            />
+          </Fragment>
         ))}
       </ContentWrapper>
       <Pagination

@@ -28,7 +28,7 @@ export default function Modal({ modalOpen, setModalOpen }: IModalOpen) {
       onClick={handleClose}
     >
       <Card>
-        <h3>Hi</h3>
+        <div></div>
       </Card>
     </Wrapper>
   );

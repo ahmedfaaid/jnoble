@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, MouseEventHandler } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Candidate } from '../../types';
 import AvailabilityIndicator from '../AvailabilityIndicator';
 import { Card } from './CandidateCard.styled';
@@ -9,6 +9,7 @@ interface ICandidateCard {
   setSelectedCandidates: Dispatch<SetStateAction<number[]>>;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  setDetailedCandidate: Dispatch<SetStateAction<number | undefined>>;
 }
 
 export default function CandidateCard({
@@ -16,7 +17,8 @@ export default function CandidateCard({
   selectedCandidates,
   setSelectedCandidates,
   open,
-  setOpen
+  setOpen,
+  setDetailedCandidate
 }: ICandidateCard) {
   const {
     id,
@@ -31,7 +33,8 @@ export default function CandidateCard({
   const { city, province, country } = address;
   const { name: prov } = province;
 
-  const openModal: MouseEventHandler<HTMLDivElement> = e => {
+  const openModal = () => {
+    setDetailedCandidate(id);
     setOpen(!open);
   };
 
