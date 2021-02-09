@@ -1,9 +1,24 @@
 import styled from 'styled-components';
 import { theme as t } from './Theme';
 
-export const LoadingWrapper = styled.div`
+interface IWrapper {
+  location?: string;
+}
+
+export const LoadingWrapper = styled.div<IWrapper>`
   width: 100%;
-  height: 65rem;
+  ${props => {
+    switch (props.location) {
+      case 'modal':
+        return `
+          height: 100rem;
+        `;
+      default:
+        return `
+          height: 70rem;
+        `;
+    }
+  }}
   display: flex;
   justify-content: center;
   align-items: center;
