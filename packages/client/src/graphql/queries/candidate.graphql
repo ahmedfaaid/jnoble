@@ -1,0 +1,30 @@
+query CandidateByID($id: Int!) {
+  candidateById(id: $id) {
+    id
+    firstName
+    lastName
+    middleName
+    preferredName
+    dateOfBirth
+    jobTitle
+    phone
+    email
+    address {
+      address1
+      address2
+      city
+      country
+      postalCode
+      province {
+        name
+        abbr
+      }
+    }
+    languages
+    skills
+    validDriversLicense
+    ownVehicle
+    statusInCanada
+    available
+  }
+}
