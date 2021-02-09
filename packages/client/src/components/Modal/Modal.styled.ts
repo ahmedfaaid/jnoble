@@ -5,6 +5,10 @@ interface IWrapper {
   open: boolean;
 }
 
+interface IButton {
+  variant?: string;
+}
+
 export const Wrapper = styled.div<IWrapper>`
   ${props => {
     if (props.open) {
@@ -21,8 +25,7 @@ export const Wrapper = styled.div<IWrapper>`
   align-items: center;
   z-index: 5;
   width: 100%;
-  height: 100%;
-  min-height: 100vh;
+  min-height: 150rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -32,8 +35,152 @@ export const Wrapper = styled.div<IWrapper>`
 `;
 
 export const Card = styled.div`
-  width: 60rem;
-  height: 60rem;
-  background-color: ${t.colors.white[2]};
+  width: 100rem;
+  padding: 2rem;
+  background-color: ${t.colors.white[1]};
   z-index: 10;
+  position: relative;
+  color: ${t.colors.primary[2]};
+`;
+
+export const ImageContainer = styled.div`
+  width: 10rem;
+  height: 10rem;
+  margin: 3rem auto 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: ${t.shadow[1]};
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const FieldSection = styled.div`
+  width: 80%;
+  margin: 5rem auto 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Field = styled.div`
+  width: 100%;
+
+  &:not(:last-of-type) {
+    margin-right: 2rem;
+  }
+
+  label {
+    display: block;
+    margin-left: 1rem;
+    font-size: 1.4rem;
+  }
+
+  input,
+  select {
+    display: block;
+    width: 100%;
+    height: 5rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: ${t.colors.white[2]};
+    border-radius: 0.5rem;
+    color: ${t.colors.primary[1]};
+  }
+`;
+
+export const List = styled.ul`
+  margin-left: 1rem;
+  margin-top: 1rem;
+  list-style: none;
+
+  li {
+    background-color: ${t.colors.primary[2]};
+    color: ${t.colors.white[1]};
+    width: max-content;
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  margin: 5rem 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Button = styled.button<IButton>`
+  width: 8rem;
+  padding: 1.2rem 0.8rem;
+  color: ${t.colors.white[1]};
+  font-size: 1.8rem;
+  border-radius: 1rem;
+  ${props => {
+    switch (props.variant) {
+      case 'red':
+        return `
+          background-color: ${t.colors.red[1]};
+        `;
+      case 'blue':
+        return `
+          background-color: ${t.colors.blue};
+        `;
+      default:
+        return `
+          background-color: ${t.colors.primary[2]};
+        `;
+    }
+  }}
+
+  &:not(:last-of-type) {
+    margin-right: 5rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    ${props => {
+      switch (props.variant) {
+        case 'red':
+          return `
+          background-color: ${t.colors.red[2]};
+        `;
+        case 'blue':
+          return `
+          background-color: ${t.colors.primary[3]};
+        `;
+        default:
+          return `
+          background-color: ${t.colors.primary[1]};
+        `;
+      }
+    }}
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    ${props => {
+      switch (props.variant) {
+        case 'red':
+          return `
+          background-color: ${t.colors.red[1]};
+        `;
+        case 'blue':
+          return `
+          background-color: ${t.colors.blue};
+        `;
+        default:
+          return `
+          background-color: ${t.colors.primary[2]};
+        `;
+      }
+    }}
+  }
 `;
