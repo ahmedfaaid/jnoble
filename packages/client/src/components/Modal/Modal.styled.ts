@@ -90,6 +90,11 @@ export const List = styled.ul`
     width: max-content;
     padding: 1rem;
     font-size: 1.2rem;
+    display: inline-block;
+
+    &:not(:last-of-type) {
+      margin-right: 1rem;
+    }
   }
 `;
 
