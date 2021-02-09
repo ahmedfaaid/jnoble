@@ -13,7 +13,7 @@ const AllCandidates = loader('../graphql/queries/allCandidates.graphql');
 
 const ContentWrapper = styled.div`
   width: 100%;
-  min-height: 65rem;
+  min-height: calc(100vh - 8rem);
   padding: 2rem;
   display: flex;
   flex-wrap: wrap;
@@ -26,9 +26,6 @@ export default function Candidates() {
   const [detailedCandidate, setDetailedCandidate] = useState<number>();
   const [selectedCandidates, setSelectedCandidates] = useState<number[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-
-  console.log('detailedCandidate', detailedCandidate);
-  console.log('selectedCandidates', selectedCandidates);
 
   const { data, loading, error } = useQuery(AllCandidates, {
     variables: {
@@ -58,7 +55,11 @@ export default function Candidates() {
 
   return (
     <Layout page='Candidates'>
-      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <Modal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        candidate={detailedCandidate}
+      />
       <ContentWrapper>
         {data.allCandidates.items.map((candidate: Candidate) => (
           <Fragment key={candidate.id}>
