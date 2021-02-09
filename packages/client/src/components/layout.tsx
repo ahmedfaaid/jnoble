@@ -18,6 +18,11 @@ const Content = styled.div`
   margin-left: 35rem;
 `;
 
+const Main = styled.main`
+  position: relative;
+  min-height: calc(100vh - 8rem);
+`;
+
 export default function Layout({ children, page }: LayoutProps) {
   return (
     <>
@@ -40,7 +45,7 @@ export default function Layout({ children, page }: LayoutProps) {
           <Sidebar />
           <Content>
             <Topbar page={page} />
-            <main style={{ position: 'relative' }}>{children}</main>
+            <Main>{children}</Main>
           </Content>
         </PageLayout>
       </div>
