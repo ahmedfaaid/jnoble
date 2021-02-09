@@ -11,13 +11,14 @@ import {
   Card,
   FieldSection,
   ImageContainer,
-  Field,
   Wrapper,
+  AltField,
   List,
   ButtonWrapper,
   Button
 } from './Modal.styled';
 import { LoadingWrapper, Loading } from '../../styles/utils';
+import InputField from '../InputField';
 const CandidateById = loader('../../graphql/queries/candidate.graphql');
 
 interface IModalOpen {
@@ -88,192 +89,134 @@ export default function Modal({
           <img src='https://dummyimage.com/100x100/000/fff' alt='' />
         </ImageContainer>
         <FieldSection>
-          <Field>
-            <label htmlFor='firstName'>First Name</label>
-            <input
-              type='text'
-              name='firstName'
-              value={data.candidateById.firstName}
-              readOnly
-            />
-          </Field>
-          <Field>
-            <label htmlFor='middleName'>Middle Name</label>
-            <input
-              type='text'
-              name='middleName'
-              value={
-                data.candidateById.middleName
-                  ? data.candidateById.middleName
-                  : ''
-              }
-              readOnly
-            />
-          </Field>
-          <Field>
-            <label htmlFor='lastName'>Last Name</label>
-            <input
-              type='text'
-              name='lastName'
-              value={data.candidateById.lastName}
-              readOnly
-            />
-          </Field>
+          <InputField
+            name='firstName'
+            text='First Name'
+            type='text'
+            value={data.candidateById.firstName}
+          />
+          <InputField
+            name='middleName'
+            text='Middle Name'
+            type='text'
+            value={
+              data.candidateById.middleName ? data.candidateById.middleName : ''
+            }
+          />
+          <InputField
+            name='lastName'
+            text='Last Name'
+            type='text'
+            value={data.candidateById.lastName}
+          />
         </FieldSection>
         <FieldSection>
-          <Field>
-            <label htmlFor='dateOfBirth'>Date Of Birth</label>
-            <input
-              type='date'
-              name='dateOfBirth'
-              value={data.candidateById.dateOfBirth}
-            />
-          </Field>
-          <Field>
-            <label htmlFor='jobTitle'>Job Title</label>
-            <input
-              type='text'
-              name='jobTitle'
-              value={data.candidateById.jobTitle}
-              readOnly
-            />
-          </Field>
+          <InputField
+            name='dateOfBirth'
+            text='Date Of Birth'
+            type='text'
+            value={data.candidateById.dateOfBirth}
+          />
+          <InputField
+            name='jobTitle'
+            text='Job Title'
+            type='text'
+            value={data.candidateById.jobTitle}
+          />
         </FieldSection>
         <FieldSection>
-          <Field>
-            <label htmlFor='phone'>Phone</label>
-            <input
-              type='tel'
-              name='phone'
-              value={data.candidateById.phone}
-              readOnly
-            />
-          </Field>
-          <Field>
-            <label htmlFor='email'>Email</label>
-            <input
-              type='email'
-              name='email'
-              value={data.candidateById.email}
-              readOnly
-            />
-          </Field>
+          <InputField
+            name='phone'
+            text='Phone'
+            type='tel'
+            value={data.candidateById.phone}
+          />
+          <InputField
+            name='email'
+            text='Email'
+            type='email'
+            value={data.candidateById.email}
+          />
         </FieldSection>
         <FieldSection>
-          <Field>
-            <label htmlFor='address1'>Address 1</label>
-            <input
-              type='text'
-              name='address1'
-              value={data.candidateById.address.address1}
-              readOnly
-            />
-          </Field>
+          <InputField
+            name='address1'
+            text='Address 1'
+            type='text'
+            value={data.candidateById.address.address1}
+          />
         </FieldSection>
         <FieldSection>
-          <Field>
-            <label htmlFor='address2'>Address 2</label>
-            <input
-              type='text'
-              name='address1'
-              value={
-                data.candidateById.address.address2
-                  ? data.candidateById.address.address2
-                  : ''
-              }
-              readOnly
-            />
-          </Field>
+          <InputField
+            name='address2'
+            text='Address 2'
+            type='text'
+            value={data.candidateById.address.address2}
+          />
         </FieldSection>
         <FieldSection>
-          <Field>
-            <label htmlFor='city'>City</label>
-            <input
-              type='text'
-              name='city'
-              value={data.candidateById.address.city}
-              readOnly
-            />
-          </Field>
-          <Field>
-            <label htmlFor='province'>Province</label>
-            <input
-              type='text'
-              name='province'
-              value={data.candidateById.address.province.name}
-              readOnly
-            />
-          </Field>
-          <Field>
-            <label htmlFor='postalCode'>Postal Code</label>
-            <input
-              type='text'
-              name='postalCode'
-              value={data.candidateById.address.postalCode}
-              readOnly
-            />
-          </Field>
-          <Field>
-            <label htmlFor='country'>Country</label>
-            <input
-              type='text'
-              name='country'
-              value={data.candidateById.address.country}
-              readOnly
-            />
-          </Field>
+          <InputField
+            name='city'
+            text='City'
+            type='text'
+            value={data.candidateById.address.city}
+          />
+          <InputField
+            name='province'
+            text='Province'
+            type='text'
+            value={data.candidateById.address.province.name}
+          />
+          <InputField
+            name='postalCode'
+            text='Postal Code'
+            type='text'
+            value={data.candidateById.address.postalCode}
+          />
+          <InputField
+            name='country'
+            text='Country'
+            type='text'
+            value={data.candidateById.address.country}
+          />
         </FieldSection>
         <FieldSection>
-          <Field>
+          <AltField>
             <label htmlFor='languages'>Languages</label>
             <List>
               {data.candidateById.languages.map((language: string) => (
                 <li key={language}>{language}</li>
               ))}
             </List>
-          </Field>
-          <Field>
+          </AltField>
+          <AltField>
             <label htmlFor='skills'>skills</label>
             <List>
               {data.candidateById.skills.map((skill: string) => (
                 <li key={skill}>{skill}</li>
               ))}
             </List>
-          </Field>
+          </AltField>
         </FieldSection>
         <FieldSection>
-          <Field>
-            <label htmlFor='validDriversLicense'>
-              Has A Valid Driver's License
-            </label>
-            <select
-              name='validDriversLicense'
-              value={data.candidateById.validDriversLicense ? 'true' : 'false'}
-              disabled
-            >
-              <option value='true'>Yes</option>
-              <option value='false'>No</option>
-            </select>
-          </Field>
-          <Field>
-            <label htmlFor='ownVehicle'>Has Own Vehicle</label>
-            <select
-              name='ownVehicle'
-              value={data.candidateById.ownVehicle ? 'true' : 'false'}
-              disabled
-            >
-              <option value='true'>Yes</option>
-              <option value='false'>No</option>
-            </select>
-          </Field>
-          <Field>
-            <label htmlFor='statusInCanada'>Status In Canada</label>
-            <input
-              type='text'
-              name='statusInCanada'
-              value={data.candidateById.statusInCanada}
-            />
-          </Field>
+          <InputField
+            name='validDriversLicense'
+            text={`Has A Valid Driver's License`}
+            type='text'
+            value={data.candidateById.validDriversLicense ? 'true' : 'false'}
+          />
+          <InputField
+            name='ownVehicle'
+            text='Has Own Vehicle'
+            type='text'
+            value={data.candidateById.ownVehicle ? 'true' : 'false'}
+          />
+          <InputField
+            name='statusInCanada'
+            text='Status In Canada'
+            type='text'
+            value={data.candidateById.statusInCanada}
+          />
         </FieldSection>
         <ButtonWrapper>
           <Button disabled>Save</Button>
