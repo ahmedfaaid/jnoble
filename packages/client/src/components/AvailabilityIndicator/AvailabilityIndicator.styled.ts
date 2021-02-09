@@ -27,7 +27,7 @@ export const Indicator = styled.div<IIndicatorProps>`
       `;
     } else {
       return `
-        background-color: ${t.colors.red};
+        background-color: ${t.colors.red[1]};
       `;
     }
   }}
