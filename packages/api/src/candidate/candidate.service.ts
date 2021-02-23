@@ -83,7 +83,7 @@ export class CandidateService {
   async updateCandidate(
     id: number,
     input: CandidateUpdateInput,
-    province: ProvinceInput,
+    province?: ProvinceInput,
   ): Promise<Candidate> {
     let prov;
 
