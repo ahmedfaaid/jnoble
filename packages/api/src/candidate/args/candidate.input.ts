@@ -28,6 +28,9 @@ export class CandidateInput {
   @Field()
   email: string;
 
+  @Field({ nullable: true })
+  password?: string;
+
   @Field(() => [String])
   languages: string[];
 
@@ -72,6 +75,9 @@ export class CandidateUpdateInput {
 
   @Field({ nullable: true })
   email?: string;
+
+  @Field({ nullable: true })
+  password?: string;
 
   @Field({ nullable: true })
   address?: AddressInput;
