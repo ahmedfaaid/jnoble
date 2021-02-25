@@ -4,16 +4,13 @@
   "scripts": {
     "start-db": "docker-compose up -d",
     "start-api": "cd packages/api; npm run start:dev",
-    "start-client": "cd packages/client; npm start"
+    "start-client": "cd packages/client; npm start",
+    "migrate": "cd packages/api; npm run migrate"
   },
   "devDependencies": {
-    "@types/react-table": "^7.0.27",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "eslint": "^7.17.0",
     "lerna": "^3.22.1"
-  },
-  "dependencies": {
-    "react-table": "^7.6.3"
   }
 }
