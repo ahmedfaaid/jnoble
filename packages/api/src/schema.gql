@@ -49,17 +49,26 @@ type Address {
   updatedAt: String!
 }
 
+type AuthorizedCandidate {
+  candidate: Candidate!
+  token: String!
+}
+
 type Query {
   allCandidates(skip: Int, take: Int!): AllCandidatesResponse
   candidatesByName(input: String!): [Candidate!]
   candidateByEmail(input: String!): Candidate
   candidateById(id: Int!): Candidate
+  login(password: String!, email: String!): AuthorizedCandidate!
 }
 
 type Mutation {
   addCandidate(province: ProvinceInput!, address: AddressInput!, candidate: CandidateInput!): Candidate!
   updateCandidate(province: ProvinceInput, input: CandidateUpdateInput, id: Float!): Candidate!
   bulkAdd: [Candidate!]!
+  registerCandidate(province: ProvinceInput!, address: AddressInput!, candidateInput: CandidateInput!): AuthorizedCandidate!
+  verifyCandidate(token: String!): Candidate!
+  createCandidatePassword(password: String!, email: String!): Candidate!
 }
 
 input ProvinceInput {
@@ -83,6 +92,7 @@ input CandidateInput {
   jobTitle: String!
   phone: String!
   email: String!
+  password: String
   languages: [String!]!
   skills: [String!]!
   validDriversLicense: Boolean
@@ -100,6 +110,7 @@ input CandidateUpdateInput {
   jobTitle: String
   phone: String
   email: String
+  password: String
   address: AddressInput
   languages: [String!]
   skills: [String!]

@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { CandidateModule } from './candidate/candidate.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { CandidateModule } from './candidate/candidate.module';
       uploads: true,
     }),
     CandidateModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

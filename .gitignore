@@ -1,3 +1,5 @@
 node_modules
 database
 packages/api/src/candidate/jnoble_candidate_100.ts
+
+.env

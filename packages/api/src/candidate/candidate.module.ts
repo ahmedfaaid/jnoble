@@ -9,6 +9,6 @@ import { CandidateService } from './candidate.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Candidate, Address, Province])],
   providers: [CandidateResolver, CandidateService],
-  exports: [],
+  exports: [CandidateService, TypeOrmModule],
 })
 export class CandidateModule {}

@@ -12,5 +12,8 @@
     "@typescript-eslint/parser": "^4.3.0",
     "eslint": "^7.17.0",
     "lerna": "^3.22.1"
+  },
+  "dependencies": {
+    "argon2": "^0.27.1"
   }
 }

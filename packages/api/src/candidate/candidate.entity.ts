@@ -50,6 +50,9 @@ export class Candidate {
   @Field()
   email: string;
 
+  @Column({ nullable: true })
+  password?: string;
+
   @OneToOne(() => Address, address => address.candidate, {
     cascade: ['insert', 'update'],
     onDelete: 'CASCADE',
