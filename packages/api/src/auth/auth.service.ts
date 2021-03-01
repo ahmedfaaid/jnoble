@@ -48,7 +48,7 @@ export class AuthService {
     const token = await this.jwtService.sign(
       {
         candidate: validCandidate.email,
-        sub: validCandidate.id,
+        id: validCandidate.id,
       },
       {
         secret: process.env.AUTH_SECRET,
@@ -86,7 +86,7 @@ export class AuthService {
 
     const token = await this.jwtService.sign({
       candidate: registeredCandidate.email,
-      sub: registeredCandidate.id,
+      id: registeredCandidate.id,
     });
 
     return { candidate: registeredCandidate, token };
