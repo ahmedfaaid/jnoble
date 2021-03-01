@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { CandidateModule } from './candidate/candidate.module';
 import { AuthModule } from './auth/auth.module';
+import { EmployerModule } from './employer/employer.module';
+import { SubUserModule } from './sub-user/sub-user.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { AuthModule } from './auth/auth.module';
     }),
     CandidateModule,
     AuthModule,
+    EmployerModule,
+    SubUserModule,
   ],
   controllers: [],
   providers: [],

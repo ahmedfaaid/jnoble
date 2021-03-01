@@ -1,5 +1,6 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 import { AddressInput } from 'src/address/address.entity';
+// import { Employer } from 'src/employer/employer.entity';
 
 // TODO: make some of these fields nullable
 @InputType()
@@ -30,6 +31,9 @@ export class CandidateInput {
 
   @Field({ nullable: true })
   password?: string;
+
+  @Field(() => Int, { nullable: true })
+  employerId?: number;
 
   @Field(() => [String])
   languages: string[];

@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Address } from '../address/address.entity';
+import { Employer } from 'src/employer/employer.entity';
 
 // TODO: Make some of these fields nullable
 @ObjectType()
@@ -60,6 +62,14 @@ export class Candidate {
   @JoinColumn({ name: 'address_id' })
   @Field(() => Address)
   address: Address;
+
+  @ManyToOne(() => Employer, employer => employer.employees, {
+    cascade: ['insert', 'update'],
+    onDelete: 'CASCADE',
+    nullable: true,
+  })
+  @Field(() => Employer, { nullable: true })
+  employer?: Employer;
 
   @Column('text', { array: true, nullable: true })
   @Field(() => [String])

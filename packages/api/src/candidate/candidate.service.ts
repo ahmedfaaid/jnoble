@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Address, AddressInput } from 'src/address/address.entity';
 import { Province, ProvinceInput } from 'src/address/province.entity';
+import { EmployerService } from 'src/employer/employer.service';
 import { Repository } from 'typeorm';
-// import { CandidateBulkInput } from './args/bulk.input';
 import { CandidateInput, CandidateUpdateInput } from './args/candidate.input';
 import { Candidate, AllCandidatesResponse } from './candidate.entity';
 import { bulk } from './jnoble_candidate_100';
@@ -17,6 +17,7 @@ export class CandidateService {
     private readonly addressRepository: Repository<Address>,
     @InjectRepository(Province)
     private readonly provinceRepository: Repository<Province>,
+    private readonly employerService: EmployerService,
   ) {}
 
   async findAll(take: number, skip?: number): Promise<AllCandidatesResponse> {
@@ -61,6 +62,8 @@ export class CandidateService {
     address: AddressInput,
     province: ProvinceInput,
   ): Promise<Candidate> {
+    let cand;
+
     const prov = await this.provinceRepository.findOne({
       where: { name: province.name },
     });
@@ -70,10 +73,22 @@ export class CandidateService {
       province: prov,
     });
 
-    const cand = await this.candidateRepository.save({
-      ...candidate,
-      address: addy,
-    });
+    if (candidate.employerId) {
+      const employer = await this.employerService.findById(
+        candidate.employerId,
+      );
+
+      cand = await this.candidateRepository.save({
+        ...candidate,
+        address: addy,
+        employer,
+      });
+    } else {
+      cand = await this.candidateRepository.save({
+        ...candidate,
+        address: addy,
+      });
+    }
 
     await this.addressRepository.save({ ...addy, candidate: cand });
 

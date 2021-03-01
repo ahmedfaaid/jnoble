@@ -11,6 +11,7 @@ import {
 import { InputType, ObjectType, Field, Int } from '@nestjs/graphql';
 import { Province } from './province.entity';
 import { Candidate } from 'src/candidate/candidate.entity';
+import { Employer } from 'src/employer/employer.entity';
 
 @ObjectType()
 @Entity()
@@ -19,10 +20,18 @@ export class Address {
   @Field(() => Int)
   id: number;
 
-  @OneToOne(() => Candidate, candidate => candidate.address)
+  @OneToOne(() => Candidate, candidate => candidate.address, {
+    nullable: true,
+  })
   @JoinColumn({ name: 'candidate_id' })
   @Field()
-  candidate: Candidate;
+  candidate?: Candidate;
+
+  @OneToOne(() => Employer, employer => employer.address, {
+    nullable: true,
+  })
+  @JoinColumn({ name: 'employer_id' })
+  employer?: Employer;
 
   @Column({ name: 'address_1' })
   @Field()

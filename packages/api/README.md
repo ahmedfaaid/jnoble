@@ -10,5 +10,7 @@
 - ~~[x] - mass addition of candidates~~
 - [ ] - filter candidates by parameter
 - ~~[x] - add job title and date of birth columns to candidate entity~~
-- [ ] - make most fields nullable
+- ~~[x] - make most fields nullable~~
 - ~~[x] - fix foreign key error when trying to update candidate~~
+- [] - guard candidate, subuser & employer resolvers
+- [] - send email on addition of a candidate or sub
