@@ -16,8 +16,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validateCandidate(validationPayload: {
     email: string;
-    sub: number;
+    id: number;
   }): Promise<Candidate | null> {
-    return await this.candidateService.findById(validationPayload.sub);
+    return await this.candidateService.findById(validationPayload.id);
   }
 }
