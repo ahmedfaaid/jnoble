@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as argon from 'argon2';
 import { AddressInput } from 'src/address/address.entity';
@@ -6,14 +10,18 @@ import { ProvinceInput } from 'src/address/province.entity';
 import { CandidateInput } from 'src/candidate/args/candidate.input';
 import { Candidate } from 'src/candidate/candidate.entity';
 import { CandidateService } from 'src/candidate/candidate.service';
+import { SubUser } from 'src/sub-user/sub-user.entity';
+import { SubUserService } from 'src/sub-user/sub-user.service';
 import { MyContext } from 'src/types';
 import { AuthorizedCandidate } from './responses/authorizedCandidate';
+import { AuthorizedSubUser } from './responses/authorizedSubUser';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly candidateService: CandidateService,
     private readonly jwtService: JwtService,
+    private readonly subUserService: SubUserService,
   ) {}
 
   async validateCandidate(
@@ -34,7 +42,7 @@ export class AuthService {
     return validPassword ? candidate : null;
   }
 
-  async login(
+  async candidateLogin(
     email: string,
     password: string,
     ctx: MyContext,
@@ -98,7 +106,7 @@ export class AuthService {
     });
 
     const candidate = await this.candidateService.findByEmail(
-      decoded.candidate.email,
+      decoded.candidate,
     );
 
     if (!candidate) {
@@ -121,6 +129,86 @@ export class AuthService {
     const hash = await argon.hash(password);
 
     return await this.candidateService.updateCandidate(existingCandidate.id, {
+      password: hash,
+    });
+  }
+
+  async validateSubUser(email: string, password: string): Promise<SubUser> {
+    const subUser = await this.subUserService.findByEmail(email);
+
+    if (!subUser) {
+      return null;
+    }
+
+    if (!subUser.password) {
+      return null;
+    }
+
+    const validPassword = argon.verify(subUser.password, password);
+    return validPassword ? subUser : null;
+  }
+
+  async subUserLogin(
+    email: string,
+    password: string,
+    ctx: MyContext,
+  ): Promise<AuthorizedSubUser> {
+    const validSubUser = await this.validateSubUser(email, password);
+
+    if (this.validateCandidate) {
+      throw new NotFoundException();
+    }
+
+    const token = await this.jwtService.sign(
+      {
+        user: validSubUser.email,
+        id: validSubUser.id,
+        role: validSubUser.role,
+      },
+      {
+        secret: process.env.AUTH_SECRET,
+      },
+    );
+
+    ctx.req.session.token = token;
+
+    return {
+      subUser: validSubUser,
+      token,
+    };
+  }
+
+  async verifySubUser(token: string): Promise<SubUser> {
+    const decoded = await this.jwtService.verify(token, {
+      secret: process.env.AUTH_SECRET,
+    });
+
+    const subUser = await this.subUserService.findByEmail(decoded.user);
+
+    if (!subUser) {
+      throw new NotFoundException();
+    }
+
+    return subUser;
+  }
+
+  async createSubUserPassword(
+    email: string,
+    password: string,
+  ): Promise<SubUser> {
+    const existingSubUser = await this.subUserService.findByEmail(email);
+
+    if (!existingSubUser) {
+      throw new NotFoundException();
+    }
+
+    if (existingSubUser.password) {
+      throw new ForbiddenException();
+    }
+
+    const hash = await argon.hash(password);
+
+    return await this.subUserService.updateSubUser(existingSubUser.id, {
       password: hash,
     });
   }

@@ -41,7 +41,18 @@ export class SubUserService {
     return await this.subUserRepository.save(subUser);
   }
 
-  async updateSubUser(input: SubUserUpdateInput): Promise<SubUser> {
-    return await this.subUserRepository.save(input);
+  async updateSubUser(id: number, input: SubUserUpdateInput): Promise<SubUser> {
+    const subUser = await this.subUserRepository.findOne(id, {
+      relations: ['employer', 'employer.address', 'employer.address.province'],
+    });
+
+    await this.subUserRepository.update(subUser.id, {
+      ...subUser,
+      ...input,
+    });
+
+    return await this.subUserRepository.findOne(id, {
+      relations: ['employer', 'employer.address', 'employer.address.province'],
+    });
   }
 }

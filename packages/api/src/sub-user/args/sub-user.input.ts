@@ -34,7 +34,7 @@ export class SubUserUpdateInput {
   firstName?: string;
 
   @Field({ nullable: true })
-  lastName: string;
+  lastName?: string;
 
   @Field({ nullable: true })
   middleName?: string;
