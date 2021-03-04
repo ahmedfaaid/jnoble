@@ -1,6 +1,8 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql';
 import { AddressInput } from 'src/address/address.entity';
 import { ProvinceInput } from 'src/address/province.entity';
+import { EmployerGuard } from 'src/auth/guards/gql-auth.guard';
 import { SubUserInput } from 'src/sub-user/args/sub-user.input';
 import { EmployerInput, EmployerUpdateInput } from './args/employer.input';
 import { Employer } from './employer.entity';
@@ -49,6 +51,7 @@ export class EmployerResolver {
   }
 
   @Mutation(() => Employer)
+  @UseGuards(EmployerGuard)
   async updateEmployer(
     @Args('id', { type: () => Int }) id: number,
     @Args('input')

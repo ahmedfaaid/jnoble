@@ -57,13 +57,19 @@ export class AuthService {
       {
         candidate: validCandidate.email,
         id: validCandidate.id,
+        role: validCandidate.role,
       },
       {
         secret: process.env.AUTH_SECRET,
+        expiresIn: '3600s',
       },
     );
 
-    ctx.req.session.token = token;
+    ctx.req.session.user = {
+      email: validCandidate.email,
+      role: validCandidate.role,
+      token,
+    };
 
     return {
       candidate: validCandidate,
@@ -155,7 +161,7 @@ export class AuthService {
   ): Promise<AuthorizedSubUser> {
     const validSubUser = await this.validateSubUser(email, password);
 
-    if (this.validateCandidate) {
+    if (!validSubUser) {
       throw new NotFoundException();
     }
 
@@ -167,10 +173,15 @@ export class AuthService {
       },
       {
         secret: process.env.AUTH_SECRET,
+        expiresIn: '3600s',
       },
     );
 
-    ctx.req.session.token = token;
+    ctx.req.session.user = {
+      email: validSubUser.email,
+      role: validSubUser.role,
+      token,
+    };
 
     return {
       subUser: validSubUser,

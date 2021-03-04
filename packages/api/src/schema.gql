@@ -27,6 +27,7 @@ type SubUser {
 enum Role {
   ADMIN
   MAN
+  CANDIDATE
 }
 
 type Employer {
@@ -60,6 +61,7 @@ type Candidate {
   ownVehicle: Boolean!
   statusInCanada: String!
   available: Boolean!
+  role: Role!
   createdAt: String!
   updatedAt: String!
 }
@@ -87,6 +89,11 @@ type AuthorizedCandidate {
   token: String!
 }
 
+type AuthorizedSubUser {
+  subUser: SubUser!
+  token: String!
+}
+
 type Query {
   allEmployers: [Employer!]
   employerByName(input: String!): [Employer!]
@@ -96,11 +103,14 @@ type Query {
   candidatesByName(input: String!): [Candidate!]
   candidateByEmail(input: String!): Candidate
   candidateById(id: Int!): Candidate
-  login(password: String!, email: String!): AuthorizedCandidate!
   allSubUsers: [SubUser!]
   subUserByName(input: String!): [SubUser!]
   subUserByEmail(input: String!): [SubUser!]
   subUserById(id: Int!): [SubUser!]
+  login(password: String!, email: String!): AuthorizedCandidate!
+  verifyCandidate(token: String!): Candidate!
+  subUserLogin(password: String!, email: String!): AuthorizedSubUser!
+  verifySubUser(token: String!): SubUser!
 }
 
 type Mutation {
@@ -109,11 +119,11 @@ type Mutation {
   addCandidate(province: ProvinceInput!, address: AddressInput!, candidate: CandidateInput!): Candidate!
   updateCandidate(province: ProvinceInput, input: CandidateUpdateInput, id: Float!): Candidate!
   bulkAdd: [Candidate!]!
-  registerCandidate(province: ProvinceInput!, address: AddressInput!, candidateInput: CandidateInput!): AuthorizedCandidate!
-  verifyCandidate(token: String!): Candidate!
-  createCandidatePassword(password: String!, email: String!): Candidate!
   addSubuser(subUser: SubUserInput!): SubUser!
-  updateSubUser(input: SubUserUpdateInput!): SubUser!
+  updateSubUser(input: SubUserUpdateInput!, id: Int!): SubUser!
+  registerCandidate(province: ProvinceInput!, address: AddressInput!, candidateInput: CandidateInput!): AuthorizedCandidate!
+  createCandidatePassword(password: String!, email: String!): Candidate!
+  createSubUserPassword(password: String!, email: String!): SubUser!
 }
 
 input ProvinceInput {
@@ -143,7 +153,7 @@ input SubUserInput {
   phone: String!
   email: String!
   password: String
-  role: Float
+  role: String
 }
 
 input EmployerUpdateInput {

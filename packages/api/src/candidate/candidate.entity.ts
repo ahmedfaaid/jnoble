@@ -11,6 +11,7 @@ import {
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Address } from '../address/address.entity';
 import { Employer } from 'src/employer/employer.entity';
+import { Role } from 'src/lib/roles';
 
 // TODO: Make some of these fields nullable
 @ObjectType()
@@ -94,6 +95,10 @@ export class Candidate {
   @Column()
   @Field()
   available: boolean;
+
+  @Column({ default: 'Candidate' })
+  @Field(() => Role)
+  role: Role;
 
   @CreateDateColumn({ name: 'created_at' })
   @Field()

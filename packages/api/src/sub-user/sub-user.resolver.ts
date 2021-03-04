@@ -1,4 +1,6 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { EmployerGuard } from 'src/auth/guards/gql-auth.guard';
 import { SubUserInput, SubUserUpdateInput } from './args/sub-user.input';
 import { SubUser } from './sub-user.entity';
 import { SubUserService } from './sub-user.service';
@@ -30,14 +32,17 @@ export class SubUserResolver {
   }
 
   @Mutation(() => SubUser)
+  @UseGuards(EmployerGuard)
   async addSubuser(@Args('subUser') subUser: SubUserInput): Promise<SubUser> {
     return await this.subUserService.addSubUser(subUser);
   }
 
   @Mutation(() => SubUser)
+  @UseGuards(EmployerGuard)
   async updateSubUser(
+    @Args('id', { type: () => Int }) id: number,
     @Args('input') input: SubUserUpdateInput,
   ): Promise<SubUser> {
-    return await this.subUserService.updateSubUser(input);
+    return await this.subUserService.updateSubUser(id, input);
   }
 }

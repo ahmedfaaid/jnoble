@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { Role } from '../sub-user.entity';
+import { Role } from 'src/lib/roles';
 
 @InputType()
 export class SubUserInput {

@@ -13,6 +13,7 @@ import { SubUserModule } from './sub-user/sub-user.module';
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       uploads: true,
+      context: ({ req }) => ({ headers: req.headers }),
     }),
     CandidateModule,
     AuthModule,

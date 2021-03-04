@@ -10,7 +10,8 @@ import {
   EmployerUpdateInput,
 } from 'src/employer/args/employer.input';
 import { Employer } from './employer.entity';
-import { Role, SubUser } from 'src/sub-user/sub-user.entity';
+import { SubUser } from 'src/sub-user/sub-user.entity';
+import { Role } from 'src/lib/roles';
 
 @Injectable()
 export class EmployerService {

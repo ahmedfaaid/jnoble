@@ -6,8 +6,9 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { ObjectType, Field, Int, registerEnumType } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Employer } from 'src/employer/employer.entity';
+import { Role } from 'src/lib/roles';
 
 @ObjectType()
 @Entity()
@@ -47,7 +48,7 @@ export class SubUser {
   @Field(() => Employer)
   employer: Employer;
 
-  @Column()
+  @Column({ default: 'Man' })
   @Field(() => Role)
   role: Role;
 
@@ -59,12 +60,3 @@ export class SubUser {
   @Field()
   updatedAt: string;
 }
-
-export enum Role {
-  ADMIN,
-  MAN,
-}
-
-registerEnumType(Role, {
-  name: 'Role',
-});
