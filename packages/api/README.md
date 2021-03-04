@@ -12,5 +12,6 @@
 - ~~[x] - add job title and date of birth columns to candidate entity~~
 - ~~[x] - make most fields nullable~~
 - ~~[x] - fix foreign key error when trying to update candidate~~
-- [] - guard candidate, subuser & employer resolvers
+- ~~[x] - guard candidate, subuser & employer resolvers~~
+- [] - use reflector to fix guards and roles
 - [] - send email on addition of a candidate or sub
