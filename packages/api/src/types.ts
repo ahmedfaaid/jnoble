@@ -9,6 +9,7 @@ export type MyContext = {
           email: string;
           role: string;
           id: number;
+          employerId?: number;
           token: string;
         };
       };

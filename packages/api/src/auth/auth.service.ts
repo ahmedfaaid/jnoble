@@ -183,6 +183,7 @@ export class AuthService {
       email: validSubUser.email,
       role: validSubUser.role,
       id: validSubUser.id,
+      employerId: validSubUser.employer.id,
       token,
     };
 
