@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ForbiddenException,
   Injectable,
   NotFoundException,
@@ -68,6 +69,7 @@ export class AuthService {
     ctx.req.session.user = {
       email: validCandidate.email,
       role: validCandidate.role,
+      id: validCandidate.id,
       token,
     };
 
@@ -180,6 +182,7 @@ export class AuthService {
     ctx.req.session.user = {
       email: validSubUser.email,
       role: validSubUser.role,
+      id: validSubUser.id,
       token,
     };
 
@@ -222,5 +225,15 @@ export class AuthService {
     return await this.subUserService.updateSubUser(existingSubUser.id, {
       password: hash,
     });
+  }
+
+  async logout(ctx: MyContext): Promise<boolean> {
+    ctx.req.session.destroy(err => {
+      if (err) {
+        throw new BadRequestException();
+      }
+    });
+
+    return true;
   }
 }
