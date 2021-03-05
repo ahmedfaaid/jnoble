@@ -1,8 +1,9 @@
 import { UseGuards } from '@nestjs/common';
-import { Resolver, Query, Args, Mutation, Int } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, Int, Context } from '@nestjs/graphql';
 import { AddressInput } from 'src/address/address.entity';
 import { ProvinceInput } from 'src/address/province.entity';
 import { EmployerGuard, GeneralGuard } from 'src/auth/guards/gql-auth.guard';
+import { MyContext } from 'src/types';
 import { CandidateInput, CandidateUpdateInput } from './args/candidate.input';
 import { Candidate, AllCandidatesResponse } from './candidate.entity';
 import { CandidateService } from './candidate.service';
@@ -12,12 +13,13 @@ export class CandidateResolver {
   constructor(private readonly candidateService: CandidateService) {}
 
   @Query(() => AllCandidatesResponse, { nullable: true })
-  @UseGuards(GeneralGuard)
+  @UseGuards(EmployerGuard)
   async allCandidates(
     @Args('take', { type: () => Int }) take: number,
+    @Context() ctx: MyContext,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
   ): Promise<AllCandidatesResponse> {
-    return await this.candidateService.findAll(take, skip);
+    return await this.candidateService.findAll(take, ctx, skip);
   }
 
   @Query(() => [Candidate], { nullable: true })

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Address, AddressInput } from 'src/address/address.entity';
 import { Province, ProvinceInput } from 'src/address/province.entity';
 import { EmployerService } from 'src/employer/employer.service';
+import { MyContext } from 'src/types';
 import { Repository } from 'typeorm';
 import { CandidateInput, CandidateUpdateInput } from './args/candidate.input';
 import { Candidate, AllCandidatesResponse } from './candidate.entity';
@@ -20,9 +21,16 @@ export class CandidateService {
     private readonly employerService: EmployerService,
   ) {}
 
-  async findAll(take: number, skip?: number): Promise<AllCandidatesResponse> {
+  async findAll(
+    take: number,
+    ctx: MyContext,
+    skip?: number,
+  ): Promise<AllCandidatesResponse> {
+    const { id } = ctx.req.session.user;
+
     if (skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
+        where: { employer: { id } },
         relations: ['address', 'address.province'],
         take,
         skip,
@@ -30,6 +38,7 @@ export class CandidateService {
       return { items, count };
     } else if (!skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
+        where: { employer: { id } },
         relations: ['address', 'address.province'],
         take,
       });
