@@ -26,11 +26,11 @@ export class CandidateService {
     ctx: MyContext,
     skip?: number,
   ): Promise<AllCandidatesResponse> {
-    const { id } = ctx.req.session.user;
+    const { employerId } = ctx.req.session.user;
 
     if (skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
-        where: { employer: { id } },
+        where: { employer: { id: employerId } },
         relations: ['address', 'address.province'],
         take,
         skip,
@@ -38,7 +38,7 @@ export class CandidateService {
       return { items, count };
     } else if (!skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
-        where: { employer: { id } },
+        where: { employer: { id: employerId } },
         relations: ['address', 'address.province'],
         take,
       });
@@ -70,6 +70,7 @@ export class CandidateService {
     candidate: CandidateInput,
     address: AddressInput,
     province: ProvinceInput,
+    ctx?: MyContext,
   ): Promise<Candidate> {
     let cand;
 
@@ -82,9 +83,9 @@ export class CandidateService {
       province: prov,
     });
 
-    if (candidate.employerId) {
+    if (ctx && ctx.req.session.user.employerId) {
       const employer = await this.employerService.findById(
-        candidate.employerId,
+        ctx.req.session.user.employerId,
       );
 
       cand = await this.candidateRepository.save({
@@ -144,7 +145,7 @@ export class CandidateService {
     });
   }
 
-  async bulkAdd(): Promise<Candidate[]> {
+  async bulkAdd(ctx: MyContext): Promise<Candidate[]> {
     const addedCandidates = [];
 
     for (const candidate of bulk) {
@@ -243,6 +244,7 @@ export class CandidateService {
           candInput,
           addressInput,
           prov,
+          ctx,
         );
 
         addedCandidates.push(addedCand);

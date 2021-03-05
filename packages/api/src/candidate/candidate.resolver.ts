@@ -48,15 +48,18 @@ export class CandidateResolver {
   // Todo: fix foreign key error when trying to update candidate
 
   @Mutation(() => Candidate)
+  @UseGuards(EmployerGuard)
   async addCandidate(
     @Args('candidate') candidate: CandidateInput,
     @Args('address') address: AddressInput,
     @Args('province') province: ProvinceInput,
+    @Context() ctx: MyContext,
   ): Promise<Candidate> {
     return await this.candidateService.addCandidate(
       candidate,
       address,
       province,
+      ctx,
     );
   }
 
@@ -72,7 +75,7 @@ export class CandidateResolver {
 
   @Mutation(() => [Candidate])
   @UseGuards(EmployerGuard)
-  async bulkAdd(): Promise<Candidate[]> {
-    return await this.candidateService.bulkAdd();
+  async bulkAdd(@Context() ctx: MyContext): Promise<Candidate[]> {
+    return await this.candidateService.bulkAdd(ctx);
   }
 }
