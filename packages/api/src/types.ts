@@ -8,6 +8,7 @@ export type MyContext = {
         user: {
           email: string;
           role: string;
+          id: number;
           token: string;
         };
       };
