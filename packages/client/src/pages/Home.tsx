@@ -1,9 +1,9 @@
-import Layout from '../components/layout';
+// import Layout from '../components/layout';
 
 export default function Home() {
   return (
-    <Layout page='Dashboard'>
+    <div>
       <h1>Home Page</h1>
-    </Layout>
+    </div>
   );
 }
