@@ -111,6 +111,7 @@ type Query {
   verifyCandidate(token: String!): Candidate!
   subUserLogin(password: String!, email: String!): AuthorizedSubUser!
   verifySubUser(token: String!): SubUser!
+  logout: Boolean!
 }
 
 type Mutation {

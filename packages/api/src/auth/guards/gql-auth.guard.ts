@@ -7,7 +7,10 @@ export class GeneralGuard implements CanActivate {
     const ctx = GqlExecutionContext.create(context);
     const { user, cookie } = ctx.getContext().req.session;
 
-    if (user && cookie._expires > new Date()) {
+    console.log({ user });
+    console.log({ cookie });
+
+    if (user && user.id && cookie._expires > new Date()) {
       return true;
     }
 
@@ -21,8 +24,12 @@ export class EmployerGuard implements CanActivate {
     const ctx = GqlExecutionContext.create(context);
     const { user, cookie } = ctx.getContext().req.session;
 
+    console.log({ user });
+    console.log({ cookie });
+
     if (
       user &&
+      user.id &&
       (user.role === 'Admin' || 'Man') &&
       cookie._expires > new Date()
     ) {
