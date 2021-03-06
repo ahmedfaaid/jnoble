@@ -71,4 +71,9 @@ export class AuthResolver {
   ): Promise<SubUser> {
     return await this.authService.createSubUserPassword(email, password);
   }
+
+  @Query(() => Boolean)
+  async logout(@Context() ctx: MyContext): Promise<boolean> {
+    return await this.authService.logout(ctx);
+  }
 }
