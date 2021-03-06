@@ -31,7 +31,7 @@ export class CandidateService {
     if (skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
         where: { employer: { id: employerId } },
-        relations: ['address', 'address.province'],
+        relations: ['address', 'address.province', 'employer'],
         take,
         skip,
       });
@@ -39,7 +39,7 @@ export class CandidateService {
     } else if (!skip) {
       const [items, count] = await this.candidateRepository.findAndCount({
         where: { employer: { id: employerId } },
-        relations: ['address', 'address.province'],
+        relations: ['address', 'address.province', 'employer'],
         take,
       });
       return { items, count };
@@ -49,20 +49,20 @@ export class CandidateService {
   async findByName(input: string): Promise<Candidate[]> {
     return await this.candidateRepository.find({
       where: [{ firstName: input }, { lastName: input }, { otherNames: input }],
-      relations: ['address', 'address.province'],
+      relations: ['address', 'address.province', 'employer'],
     });
   }
 
   async findByEmail(input: string): Promise<Candidate> {
     return await this.candidateRepository.findOne({
       where: { email: input },
-      relations: ['address', 'address.province'],
+      relations: ['address', 'address.province', 'employer'],
     });
   }
 
   async findById(id: number): Promise<Candidate> {
     return await this.candidateRepository.findOne(id, {
-      relations: ['address', 'address.province'],
+      relations: ['address', 'address.province', 'employer'],
     });
   }
 
@@ -113,7 +113,7 @@ export class CandidateService {
     let prov;
 
     const candidate = await this.candidateRepository.findOne(id, {
-      relations: ['address', 'address.province'],
+      relations: ['address', 'address.province', 'employer'],
     });
 
     if (province) {
@@ -141,7 +141,7 @@ export class CandidateService {
     }
 
     return await this.candidateRepository.findOne(id, {
-      relations: ['address', 'address.province'],
+      relations: ['address', 'address.province', 'employer'],
     });
   }
 
