@@ -1,9 +1,9 @@
-import Layout from '../components/layout';
+import AppLayout from '../components/appLayout';
 
 export default function Dashboard() {
   return (
-    <Layout page='Dashboard'>
+    <AppLayout page='Dashboard'>
       <h1>Dashboard</h1>
-    </Layout>
+    </AppLayout>
   );
 }

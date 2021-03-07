@@ -23,7 +23,7 @@ const Main = styled.main`
   min-height: calc(100vh - 8rem);
 `;
 
-export default function Layout({ children, page }: LayoutProps) {
+export default function AppLayout({ children, page }: LayoutProps) {
   return (
     <>
       <Helmet>

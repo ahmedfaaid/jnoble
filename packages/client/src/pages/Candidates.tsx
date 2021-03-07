@@ -1,7 +1,7 @@
 import { useState, Fragment } from 'react';
 import { useQuery } from '@apollo/client';
 import { loader } from 'graphql.macro';
-import Layout from '../components/layout';
+import AppLayout from '../components/appLayout';
 import Pagination from '../components/Pagination';
 import { Loading, LoadingWrapper } from '../styles/utils';
 import CandidateCard from '../components/CandidateCard';
@@ -27,25 +27,25 @@ export default function Candidates() {
 
   if (loading) {
     return (
-      <Layout page='Candidates'>
+      <AppLayout page='Candidates'>
         <LoadingWrapper>
           <Loading />
         </LoadingWrapper>
         <Pagination totalItems={0} limit={skip} setSkip={setSkip} />
-      </Layout>
+      </AppLayout>
     );
   }
 
   if (error) {
     return (
-      <Layout page='Candidates'>
+      <AppLayout page='Candidates'>
         <h1>Error...</h1>
-      </Layout>
+      </AppLayout>
     );
   }
 
   return (
-    <Layout page='Candidates'>
+    <AppLayout page='Candidates'>
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
@@ -71,6 +71,6 @@ export default function Candidates() {
         setSkip={setSkip}
         take={take}
       />
-    </Layout>
+    </AppLayout>
   );
 }
