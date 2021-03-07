@@ -1,6 +1,5 @@
 import { useState, Fragment } from 'react';
 import { useQuery } from '@apollo/client';
-import styled from 'styled-components';
 import { loader } from 'graphql.macro';
 import Layout from '../components/layout';
 import Pagination from '../components/Pagination';
@@ -8,17 +7,9 @@ import { Loading, LoadingWrapper } from '../styles/utils';
 import CandidateCard from '../components/CandidateCard';
 import { Candidate } from '../types';
 import Modal from '../components/Modal';
+import { ContentWrapper } from './page styles/candidates.styled';
 
 const AllCandidates = loader('../graphql/queries/allCandidates.graphql');
-
-const ContentWrapper = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 8rem);
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
 
 export default function Candidates() {
   const [skip, setSkip] = useState(0);
