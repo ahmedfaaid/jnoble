@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { theme as t } from './Theme';
 
-interface IWrapper {
+interface ILoadingProps {
   location?: string;
 }
 
-export const LoadingWrapper = styled.div<IWrapper>`
+export const LoadingWrapper = styled.div<ILoadingProps>`
   width: 100%;
   ${props => {
     switch (props.location) {
@@ -24,11 +24,12 @@ export const LoadingWrapper = styled.div<IWrapper>`
   align-items: center;
 `;
 
-export const Loading = styled.div`
+export const Loading = styled.div<ILoadingProps>`
   display: block;
   width: 20rem;
   height: 20rem;
   margin: auto;
+
   &:after {
     content: ' ';
     display: block;
@@ -39,6 +40,23 @@ export const Loading = styled.div`
     border: 6px solid ${t.colors.primary[1]};
     border-color: ${t.colors.primary[1]} transparent ${t.colors.primary[1]}
       transparent;
+
+    ${props => {
+      switch (props.location) {
+        case 'login':
+          return `
+            border: 6px solid ${t.colors.white[1]};
+            border-color: ${t.colors.white[1]} transparent ${t.colors.white[1]}
+              transparent;
+          `;
+        default:
+          return `
+            border: 6px solid ${t.colors.primary[1]};
+            border-color: ${t.colors.primary[1]} transparent ${t.colors.primary[1]}
+              transparent;
+          `;
+      }
+    }}
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @keyframes lds-dual-ring {

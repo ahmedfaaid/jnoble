@@ -24,47 +24,47 @@ export const FormContainer = styled.div`
     letter-spacing: 1px;
   }
 
-  div {
-    margin-bottom: 2rem;
+  input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
 
-    input {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 0.5rem;
+  button {
+    width: 100%;
+    padding: 1rem;
+    background-color: ${t.colors.primary[1]};
+    color: ${t.colors.white[1]};
+    font-size: 1.6rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: ${t.colors.white[1]};
+      color: ${t.colors.primary[1]};
     }
+  }
 
-    button {
-      width: 100%;
-      padding: 1rem;
-      background-color: ${t.colors.primary[1]};
-      color: ${t.colors.white[1]};
-      font-size: 1.6rem;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: all 0.2s;
+  p {
+    text-align: center;
+    color: ${t.colors.white[3]};
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+
+    a {
+      color: ${t.colors.blue};
+      text-decoration: none;
 
       &:hover {
-        background-color: ${t.colors.white[1]};
-        color: ${t.colors.primary[1]};
-      }
-    }
-
-    p {
-      text-align: center;
-      color: ${t.colors.white[3]};
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-
-      a {
-        color: ${t.colors.blue};
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        text-decoration: underline;
       }
     }
   }
+`;
+
+export const Field = styled.div`
+  margin-bottom: 2rem;
 `;
 
 export const InputLabel = styled.label`

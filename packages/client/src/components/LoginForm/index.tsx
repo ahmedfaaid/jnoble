@@ -7,11 +7,15 @@ import {
   InputLabel,
   RoleSelectContainer
 } from './LoginForm.styled';
+import { Loading } from '../../styles/utils';
+import { Field } from '../InputField/InputField.styled';
 
 const SubUserLogin = loader('../../graphql/mutations/subUserLogin.graphql');
 const CandidateLogin = loader('../../graphql/mutations/candidateLogin.graphql');
 
 export default function LoginForm() {
+  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
   const [role, setRole] = useState('worker');
   const [formDetails, setFormDetails] = useState({
     email: '',
@@ -36,6 +40,8 @@ export default function LoginForm() {
   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
+    setLoading(true);
+
     e.preventDefault();
 
     let user;
@@ -63,15 +69,33 @@ export default function LoginForm() {
 
     history.push('/dashboard');
 
+    setLoading(false);
+
     return user;
   };
+
+  if (loading) {
+    return (
+      <FormContainer>
+        <Loading location='login' />
+      </FormContainer>
+    );
+  }
+
+  // if (error) {
+  //   return (
+  //     <FormContainer>
+  //       <h2>There was an error</h2>
+  //     </FormContainer>
+  //   )
+  // }
 
   return (
     <FormContainer>
       <form onSubmit={handleSubmit}>
         <h2>LOGIN</h2>
         <RoleSelectContainer>
-          <div>
+          <Field>
             <input
               type='radio'
               name='role'
@@ -81,8 +105,8 @@ export default function LoginForm() {
               onChange={e => setRole(e.target.value)}
             />
             <label htmlFor='worker'>Worker</label>
-          </div>
-          <div>
+          </Field>
+          <Field>
             <input
               type='radio'
               name='role'
@@ -91,9 +115,9 @@ export default function LoginForm() {
               onChange={e => setRole(e.target.value)}
             />
             <label htmlFor='employer'>Employer</label>
-          </div>
+          </Field>
         </RoleSelectContainer>
-        <div>
+        <Field>
           <InputLabel htmlFor='email'>Email</InputLabel>
           <input
             type='text'
@@ -102,8 +126,8 @@ export default function LoginForm() {
             value={formDetails && formDetails.email ? formDetails.email : ''}
             onChange={handleChange}
           />
-        </div>
-        <div>
+        </Field>
+        <Field>
           <InputLabel htmlFor='password'>Password</InputLabel>
           <input
             type='text'
@@ -114,15 +138,15 @@ export default function LoginForm() {
             }
             onChange={handleChange}
           />
-        </div>
-        <div>
+        </Field>
+        <Field>
           <button type='submit'>Login</button>
-        </div>
-        <div>
+        </Field>
+        <Field>
           <p>
             Not registered? <Link to='/signup'>Sign Up</Link>
           </p>
-        </div>
+        </Field>
       </form>
     </FormContainer>
   );
