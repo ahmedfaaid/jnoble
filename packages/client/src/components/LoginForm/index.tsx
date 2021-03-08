@@ -5,10 +5,10 @@ import { loader } from 'graphql.macro';
 import {
   FormContainer,
   InputLabel,
-  RoleSelectContainer
+  RoleSelectContainer,
+  Field
 } from './LoginForm.styled';
 import { Loading } from '../../styles/utils';
-import { Field } from '../InputField/InputField.styled';
 
 const SubUserLogin = loader('../../graphql/mutations/subUserLogin.graphql');
 const CandidateLogin = loader('../../graphql/mutations/candidateLogin.graphql');

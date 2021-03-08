@@ -82,6 +82,7 @@ export const RoleSelectContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 
   div {
     margin-bottom: 0;
