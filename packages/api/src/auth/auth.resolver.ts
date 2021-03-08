@@ -13,7 +13,7 @@ import { AuthorizedSubUser } from './responses/authorizedSubUser';
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Query(() => AuthorizedCandidate)
+  @Mutation(() => AuthorizedCandidate)
   async login(
     @Args('email') email: string,
     @Args('password') password: string,
@@ -50,7 +50,7 @@ export class AuthResolver {
     return await this.authService.createCandidatePassword(email, password);
   }
 
-  @Query(() => AuthorizedSubUser)
+  @Mutation(() => AuthorizedSubUser)
   async subUserLogin(
     @Args('email') email: string,
     @Args('password') password: string,
