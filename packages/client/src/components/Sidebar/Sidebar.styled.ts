@@ -12,8 +12,13 @@ export const SideBarMenu = styled.aside`
   h1 {
     text-align: center;
     text-transform: uppercase;
-    font-size: 3.4rem;
+    font-size: 2.2rem;
     margin-top: 5rem;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 `;
 

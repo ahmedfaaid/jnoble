@@ -7,11 +7,14 @@ import {
   faCog
 } from '@fortawesome/free-solid-svg-icons';
 import { SideBarMenu, MenuList, MenuLink } from './Sidebar.styled';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
   return (
     <SideBarMenu>
-      <h1>Recruiter</h1>
+      <h1>
+        <Link to='/'>Some Cool App Name</Link>
+      </h1>
       <nav>
         <MenuList>
           <li>
