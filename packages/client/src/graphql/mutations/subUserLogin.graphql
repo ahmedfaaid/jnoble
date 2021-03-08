@@ -1,0 +1,10 @@
+mutation SubUserLogin($email: String!, $password: String!) {
+  subUserLogin(email: $email, password: $password) {
+    subUser {
+      email
+      phone
+      role
+    }
+    token
+  }
+}

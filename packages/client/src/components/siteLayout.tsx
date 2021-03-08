@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { theme as t } from '../styles/Theme';
-import SiteNav from './SiteNav/SiteNav';
+import SiteNav from './SiteNav';
 
 interface LayoutProps {
   children: ReactNode;

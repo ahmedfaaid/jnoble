@@ -1,11 +1,13 @@
-// import { useState } from 'react';
-
+import LoginForm from '../components/LoginForm';
 import SiteLayout from '../components/siteLayout';
+import { LoginPage } from './page styles/login.styled';
 
 export default function Login() {
   return (
     <SiteLayout page='Login'>
-      <h1>Login</h1>
+      <LoginPage>
+        <LoginForm />
+      </LoginPage>
     </SiteLayout>
   );
 }

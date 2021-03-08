@@ -1,0 +1,15 @@
+mutation CandidateLogin($email: String!, $password: String!) {
+  candidateLogin(email: $email, password: $password) {
+    candidate {
+      id
+      firstName
+      lastName
+      email
+      employer {
+        name
+        email
+      }
+    }
+    token
+  }
+}
