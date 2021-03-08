@@ -14,7 +14,7 @@ export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
   @Mutation(() => AuthorizedCandidate)
-  async login(
+  async candidateLogin(
     @Args('email') email: string,
     @Args('password') password: string,
     @Context() ctx: MyContext,

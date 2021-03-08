@@ -107,9 +107,7 @@ type Query {
   subUserByName(input: String!): [SubUser!]
   subUserByEmail(input: String!): [SubUser!]
   subUserById(id: Int!): [SubUser!]
-  login(password: String!, email: String!): AuthorizedCandidate!
   verifyCandidate(token: String!): Candidate!
-  subUserLogin(password: String!, email: String!): AuthorizedSubUser!
   verifySubUser(token: String!): SubUser!
   logout: Boolean!
 }
@@ -122,8 +120,10 @@ type Mutation {
   bulkAdd: [Candidate!]!
   addSubuser(subUser: SubUserInput!): SubUser!
   updateSubUser(input: SubUserUpdateInput!, id: Int!): SubUser!
+  candidateLogin(password: String!, email: String!): AuthorizedCandidate!
   registerCandidate(province: ProvinceInput!, address: AddressInput!, candidateInput: CandidateInput!): AuthorizedCandidate!
   createCandidatePassword(password: String!, email: String!): Candidate!
+  subUserLogin(password: String!, email: String!): AuthorizedSubUser!
   createSubUserPassword(password: String!, email: String!): SubUser!
 }
 
